@@ -1,23 +1,9 @@
 # learning_resources
 
-- [Backend Interview process & questions at a startup](Backend_interview_process.md#interview-process-at-a-startup)
+- [Backend Interview process & questions at a startup](C%23_Backend_interview_process.md)
 - [Videos](README.md#videos)
 - [Datastructures and algorithms](README.md#datastructures-and-algorithms)
 - [System design](README.md#system-design)
-
-
-## Videos
-1. [8 design patterns](https://www.youtube.com/watch?v=tAuRQs_d9F8) every developer should know
-
-1. 10 [System design concepts](https://www.youtube.com/watch?v=i53Gi_K3o7I) explained consisely
-
-1. What is the difference between a [process and a thread](https://www.youtube.com/watch?v=4rLW7zg21gI&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=8)?
-
-2. What is [HTTPS and TLS](https://www.youtube.com/watch?v=j9QmMEWmcfo&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=9)?
-
-3. [What happens](https://www.youtube.com/watch?v=AlkDbnbv7dk&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=10) when you type a URL into your browser?
-
-</details>
 
 ## Datastructures and algorithms
 [bestresources](https://bestresources.co/resource/the-interview-study-guide-for-software-engineers-by-benjamin-rogojan--qvf019) - collected links about this DSA
@@ -110,6 +96,19 @@ public class BinaryTree {
 <br>
 
 ## System design
+
+### Videos
+1. [8 design patterns](https://www.youtube.com/watch?v=tAuRQs_d9F8) every developer should know
+
+1. 10 [System design concepts](https://www.youtube.com/watch?v=i53Gi_K3o7I) explained consisely
+
+1. What is the difference between a [process and a thread](https://www.youtube.com/watch?v=4rLW7zg21gI&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=8)?
+
+2. What is [HTTPS and TLS](https://www.youtube.com/watch?v=j9QmMEWmcfo&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=9)?
+
+3. [What happens](https://www.youtube.com/watch?v=AlkDbnbv7dk&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=10) when you type a URL into your browser?
+
+<br>
 
 ### Networking concepts
 
