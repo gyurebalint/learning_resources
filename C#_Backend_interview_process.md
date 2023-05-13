@@ -1,8 +1,8 @@
 # Interview process at a startup
 
-These questions were collected by a lead-backend engineer who did the hiring at a gaming startup. I was asked several of these including the coding challenges.
+*These questions were collected by a lead-backend engineer who did the hiring at a gaming startup. I was asked several of these including the coding challenges.*
 
-A lot of the answers I generated with Chat-GPT (pronounce: chat gipitty) Not mindlessly might I add, but still use it with caution.
+*A lot of the answers I generated with Chat-GPT (pronounce: chat gipitty) Not mindlessly might I add, but still use it with caution.*
 
 ## Adaptive interview process
 The following interview questionnaire is created to adaptively assign questions for the candidate. The topics order is followed by the actual conversation, so this documentation has to be considered as a guide only. The interview consists of three parts:

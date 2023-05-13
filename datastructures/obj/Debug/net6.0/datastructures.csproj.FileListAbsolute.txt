@@ -1,0 +1,15 @@
+/home/radgaul/dev/learning_resources/datastructures/bin/Debug/net6.0/datastructures
+/home/radgaul/dev/learning_resources/datastructures/bin/Debug/net6.0/datastructures.deps.json
+/home/radgaul/dev/learning_resources/datastructures/bin/Debug/net6.0/datastructures.runtimeconfig.json
+/home/radgaul/dev/learning_resources/datastructures/bin/Debug/net6.0/datastructures.dll
+/home/radgaul/dev/learning_resources/datastructures/bin/Debug/net6.0/ref/datastructures.dll
+/home/radgaul/dev/learning_resources/datastructures/bin/Debug/net6.0/datastructures.pdb
+/home/radgaul/dev/learning_resources/datastructures/obj/Debug/net6.0/datastructures.csproj.AssemblyReference.cache
+/home/radgaul/dev/learning_resources/datastructures/obj/Debug/net6.0/datastructures.GeneratedMSBuildEditorConfig.editorconfig
+/home/radgaul/dev/learning_resources/datastructures/obj/Debug/net6.0/datastructures.AssemblyInfoInputs.cache
+/home/radgaul/dev/learning_resources/datastructures/obj/Debug/net6.0/datastructures.AssemblyInfo.cs
+/home/radgaul/dev/learning_resources/datastructures/obj/Debug/net6.0/datastructures.csproj.CoreCompileInputs.cache
+/home/radgaul/dev/learning_resources/datastructures/obj/Debug/net6.0/datastructures.dll
+/home/radgaul/dev/learning_resources/datastructures/obj/Debug/net6.0/ref/datastructures.dll
+/home/radgaul/dev/learning_resources/datastructures/obj/Debug/net6.0/datastructures.pdb
+/home/radgaul/dev/learning_resources/datastructures/obj/Debug/net6.0/datastructures.genruntimeconfig.cache

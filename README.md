@@ -1,11 +1,25 @@
 # learning_resources
 
 - [Backend Interview process & questions at a startup](C%23_Backend_interview_process.md)
-- [Videos](README.md#videos)
 - [Datastructures and algorithms](README.md#datastructures-and-algorithms)
 - [System design](README.md#system-design)
 
 ## Datastructures and algorithms
+
+Implement your own datastructures in C#
+- [Enumerable](datastructures/Enumerable.cs)
+- [HashSet](datastructures/HashSet.cs)
+- Hashtable
+- List
+- Stacks
+- Queues
+- Linked List
+- Tree
+- Graph
+- Heap
+
+
+
 [bestresources](https://bestresources.co/resource/the-interview-study-guide-for-software-engineers-by-benjamin-rogojan--qvf019) - collected links about this DSA
 
 <details>
@@ -21,7 +35,7 @@ class Node {
         data = data;
         left = right = null;
     }
-}Videos
+}
  
 public class BinaryTree {
     // Root of Binary Tree
@@ -96,6 +110,16 @@ public class BinaryTree {
 <br>
 
 ## System design
+
+[Sytem design primer](https://github.com/donnemartin/system-design-primer#study-guide) - start here
+
+Definately watch the first video CS 75 from Harvard, it is a good basis for future knowledge and it is presented incrementally as a story, so its built up. Pretty great stuff.
+
+### Real world architectures
+
+- __MapReduce__ [at Google in 2004 by Jeffrey Dean and Sanjay Ghemawat] <br> [article](http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf), [video 1](https://www.youtube.com/watch?v=cHGaQz0E7AU), [video 2](https://www.youtube.com/watch?v=cvhKoniK5Uo)
+
+- Hadoop file system - [article](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.pdf), [white paper](https://storageconference.us/2010/Papers/MSST/Shvachko.pdf)
 
 ### Videos
 1. [8 design patterns](https://www.youtube.com/watch?v=tAuRQs_d9F8) every developer should know
@@ -198,8 +222,6 @@ __Load balancing:__ Load balancing is a technique for distributing traffic acros
 
 __Monitoring and logging:__ Monitoring and logging are essential components of system design, as they allow developers to track system performance, detect issues, and troubleshoot problems. Monitoring involves collecting and analyzing metrics and events from various system components, such as servers, applications, and networks. Logging involves capturing and storing system events, errors, and user actions for later analysis and troubleshooting. Monitoring and logging can be done using tools such as Prometheus, Grafana, or ELK. For example, monitoring and logging can be used to track system uptime, response times, error rates, and user activity for an e-commerce website, to ensure optimal performance and user experience.
 
-[Sytem design primer](https://github.com/donnemartin/system-design-primer#study-guide) - start here
-
 [Best handpicked system design](https://bestresources.co/resource/best-handpicked-system-design-interesting-reads-qvbimi) - interesting reads
 
 [Actual system design interview questions](https://bestresources.co/resource/system-design-actual-interview-questions-qvbj2c) - Videos, articles about their solutions
@@ -209,7 +231,3 @@ __Monitoring and logging:__ Monitoring and logging are essential components of s
 https://www.hiredintech.com/classrooms/system-design/lesson/61
 
 https://www.reddit.com/r/leetcode/comments/uc3zex/what_are_good_resources_for_system_design/
-
-
-
-
