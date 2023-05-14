@@ -9,7 +9,7 @@
 Implement your own datastructures in C#
 - [Enumerable](datastructures/Enumerable.cs)
 - [HashSet](datastructures/HashSet.cs)
-- Hashtable
+- [Hashtable](datastructures/HashTable.cs)
 - List
 - Stacks
 - Queues

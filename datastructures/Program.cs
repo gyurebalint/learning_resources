@@ -27,4 +27,14 @@ myHashSet.Remove(2);                        // set = [1]
 Console.WriteLine(myHashSet.Contains(2));   // return False, (already removed)
 #endregion
 
+RadgaulHashTable myHashMap = new();
+myHashMap.Put(1, 1); // The map is now [[1,1]]
+myHashMap.Put(2, 2); // The map is now [[1,1], [2,2]]
+Console.WriteLine(myHashMap.Get(1));    // return 1, The map is now [[1,1], [2,2]]
+Console.WriteLine(myHashMap.Get(3));    // return -1 (i.e., not found), The map is now [[1,1], [2,2]]
+myHashMap.Put(2, 1); // The map is now [[1,1], [2,1]] (i.e., update the existing value)
+Console.WriteLine(myHashMap.Get(2));    // return 1, The map is now [[1,1], [2,1]]
+myHashMap.Remove(2); // remove the mapping for 2, The map is now [[1,1]]
+Console.WriteLine(myHashMap.Get(2));    // return -1 (i.e., not found), The map is now [[1,1]]
+
 Console.WriteLine("Datastructures OFF");
