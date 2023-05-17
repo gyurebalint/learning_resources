@@ -115,8 +115,7 @@ public class BinaryTree {
 
 Definately watch the first video CS 75 from Harvard, it is a good basis for future knowledge and it is presented incrementally as a story, so its built up. Pretty great stuff.
 
-## Real world architectures
-
+## Concepts 
 CAP-theorem (Consistensy, Availability, Partition tolerance)
 - Centralized system: you don't have to choose between __Availability__ and __Consistency__
 - Distributed system: Since partition is guaranteed you always have to choose between __Availability__ and __Consistency__. 
@@ -145,6 +144,8 @@ __AP:__ Availability/Partition Tolerance - In the AP model, the focus is on avai
 
 BASE
 ACID
+
+## Real world architectures
 
 ## MapReduce 
 
