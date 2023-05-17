@@ -109,17 +109,84 @@ public class BinaryTree {
 
 <br>
 
-## System design
+# System design
 
 [Sytem design primer](https://github.com/donnemartin/system-design-primer#study-guide) - start here
 
 Definately watch the first video CS 75 from Harvard, it is a good basis for future knowledge and it is presented incrementally as a story, so its built up. Pretty great stuff.
 
-### Real world architectures
+## Real world architectures
 
-- __MapReduce__ [at Google in 2004 by Jeffrey Dean and Sanjay Ghemawat] <br> [article](http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf), [video 1](https://www.youtube.com/watch?v=cHGaQz0E7AU), [video 2](https://www.youtube.com/watch?v=cvhKoniK5Uo)
+CAP-theorem (Consistensy, Availability, Partition tolerance)
+- Centralized system: you don't have to choose between __Availability__ and __Consistency__
+- Distributed system: Since partition is guaranteed you always have to choose between __Availability__ and __Consistency__. 
 
-- Hadoop file system - [article](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.pdf), [white paper](https://storageconference.us/2010/Papers/MSST/Shvachko.pdf)
+__Consistency:__ A read is guaranteed to return the most recent write for a given client. <br>
+
+"Weak consistency," "eventual consistency," and "strong consistency" are different levels of consistency models that describe how data is synchronized and replicated in distributed systems. Here's a brief explanation of each:
+- __Weak Consistency:__ In a weak consistency model, there is no immediate guarantee that all replicas of data will have the same value or be up to date. Updates to data are asynchronously propagated to different replicas, and clients may observe different versions of data depending on their access point. Weak consistency allows for high availability and low latency but sacrifices data consistency. It is often seen in systems like NoSQL databases, where scalability and partition tolerance are prioritized over strong consistency. <br>
+- __Eventual Consistency:__ Eventual consistency is a relaxed consistency model where data replicas eventually converge and reach a consistent state over time, given that there are no further updates. In other words, if no new updates are made, eventually all replicas will agree on the same value. However, during periods of updates and replication, different replicas may temporarily have inconsistent values. Eventual consistency strikes a balance between availability and consistency and is commonly used in distributed systems such as distributed databases and content delivery networks (CDNs).
+- __Strong Consistency:__ Strong consistency provides a strict guarantee that all replicas of data will have the same value and be up to date at all times. When a write/update operation completes, all subsequent read operations will return the updated value from any replica. Strong consistency ensures that the system behaves as if it were a single coherent entity, maintaining data integrity and consistency. However, achieving strong consistency often comes at the expense of increased latency and decreased availability, as the system must synchronize and coordinate updates across replicas. Traditional relational databases often provide strong consistency.
+
+
+__Availability:__ A non-failing node will return a reasonable response within a reasonable amount of time (no error or timeout). <br>
+- __Master-Slave Failover:__
+In a master-slave failover configuration, there is one primary/master node and one or more secondary/slave nodes. The primary/master node is responsible for handling both read and write operations, while the secondary/slave nodes replicate data from the primary and handle only read operations. The primary node is the authoritative source of data, and the secondary nodes act as backups.<br>
+Master-slave failover is commonly used in scenarios where read scalability, data backup, and fault tolerance are important. It is often seen in databases, such as MySQL with a primary-master replication setup.
+- __Master-Master Failover:__
+In a master-master failover configuration, there are multiple nodes, each serving as a master. Unlike the master-slave configuration, all nodes in a master-master setup can handle both read and write operations. Each master node is responsible for its subset of data or a specific partition.<br>
+Master-master failover is commonly used in scenarios where high availability, load balancing, and fault tolerance are crucial. It is often seen in distributed databases, such as Apache Cassandra and Riak.
+
+__Partition tolerance:__ The system will continue to function when network partitions occur.
+
+__CP:__ Consistency/Partition Tolerance - In the context of the CAP theorem, the CP model emphasizes consistency and partition tolerance. It means that in the event of a network partition (where nodes in a distributed system are unable to communicate with each other), the system will prioritize maintaining strong consistency. This means that during a partition, some nodes may become unavailable to ensure data consistency across the system. Once the partition is resolved, the system resumes normal operation.
+
+__AP:__ Availability/Partition Tolerance - In the AP model, the focus is on availability and partition tolerance. It means that the system will prioritize remaining available and accessible to users, even in the presence of network partitions. In this model, there may be temporary inconsistencies or divergent states across different replicas of data. The system allows for eventual consistency, ensuring that all replicas converge to a consistent state over time.
+
+BASE
+ACID
+
+## MapReduce 
+
+[at Google in 2004 by Jeffrey Dean and Sanjay Ghemawat] <br> [article](http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf), [video 1](https://www.youtube.com/watch?v=cHGaQz0E7AU), [video 2](https://www.youtube.com/watch?v=cvhKoniK5Uo)
+
+<br>
+
+## Hadoop file system 
+
+[article](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.pdf) - a very good article by Apache
+
+[video](https://www.youtube.com/watch?v=nRX4_3qf3rc)
+- What is HDFS?
+- What is the diff between a normal file system and hdfs?
+- what problem does it solve?
+- What is the NameNode, what does it do, how many instances are there?
+- What is the DataNode, what does it do, how many instances are there? 
+- What is the FileSystem Namespace and who is responsible for maintaining it?
+- What are EditLog and FsImage?
+
+### Replica Placement
+One third of replicas are on one
+node, two thirds of replicas are on one rack, and the other third are evenly distributed across the remaining racks. This policy improves write performance without compromising data reliability or read performance.
+
+        RACK 1                          RACK 2
+        ---------------                 ---------------
+        |  Node 1     |                 | Node 4      |
+        |             |                 |             |
+        |  FILE_ID1   |                 |  FILE_ID1   |
+        |  BLOCK_ID1  |                 |  BLOCK_ID2  |
+        |-------------|                 |-------------|
+        |             |                 |             |
+        |  Node 2     |                 |  Node 5     |
+        |             |                 |             |
+        |------------ |                 |-------------|
+        |             |                 |  Node 6     |
+        |  Node 3     |                 |             |
+        |             |                 |  FILE_ID1   |
+        |             |                 |  BLOCK_ID3  |
+        ---------------                 ---------------
+
+
 
 ### Videos
 1. [8 design patterns](https://www.youtube.com/watch?v=tAuRQs_d9F8) every developer should know
