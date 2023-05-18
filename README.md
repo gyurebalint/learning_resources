@@ -204,6 +204,71 @@ node, two thirds of replicas are on one rack, and the other third are evenly dis
 
 ### Networking concepts
 
+## __Caching__ 
+[Video](https://www.youtube.com/watch?v=dGAgxozNWFE)
+
+Storing frequently accessed data in a cache to reduce the number of requests made to a server. Caching can be done at various levels such as browser cache, CDN cache, and server cache.
+
+Caching is a common technique  in modern computing to enhance  
+system performance and reduce response time.
+From the front end to the back end,  
+caching plays a crucial role in improving the  efficiency of various applications and systems.
+A typical system architecture  involves several layers of caching.
+At each layer, there are multiple  strategies and mechanisms for caching data, depending on the requirements and  constraints of the specific application.
+Before diving into a typical system architecture,  
+let’s zoom in and look at how prevalent  caching is within each computer itself.
+
+1. __At the computer level__<br>
+The most common hardware cache  are L1, L2, and L3 caches. <br>
+__L1 cache__ is the smallest and fastest cache,  typically integrated into the CPU itself. It stores frequently accessed data  and instructions, allowing the CPU to quickly access them without having  to fetch them from slower memory.<br>
+__L2 cache__ is larger but slower than L1 cache,  
+and is typically located on the  CPU die or on a separate chip.<br>
+__L3 cache__ is even larger and slower than L2 cache,  and is often shared between multiple CPU cores. <br>
+__Translation lookaside buffer (TLB)__ It stores recently used  virtual-to-physical address translations. It is used by the CPU to quickly  translate virtual memory addresses to physical memory addresses, reducing the  time needed to access data from memory.
+
+                    TLB (Translation lookaside buffer)
+                        -----------------------------|
+        Virtual address |  Virtual    |   Physical   |
+        --------------> |-------------|--------------| 
+                        | 0x0000      | 0x0003       |
+                        |-------------|--------------|
+        Physical adress |0x0001       | 0x0004       |
+        <---------------|-------------|--------------|
+                        |0x0002       | 0x0005       |
+                        |------------ |--------------| 
+                        |0x0003       | 0x0011       |
+                        ------------------------------
+
+2. __At the operating system level__ (Page cache and other file system caches)<br>
+__Page cache__ is managed by the operating  system and resides in main memory. It is used to store recently  used disk blocks in memory. When a program requests data from the disk,  
+the operating system can quickly retrieve the  data from memory instead of reading it from disk.<br>
+There are other caches managed by the  operating system, such as the __inode cache__. These caches are used to speed up  file system operations by reducing the number of disk accesses required  to access files and directories.
+
+3. __Application front end__  
+__Web browsers__ can cache HTTP responses  to enable faster retrieval of data.
+When we request data over HTTP for the first time,  
+and it is returned with an  expiration policy in the HTTP header;
+we request the same data again, and the browser  returns the data from its cache if available.
+
+4. __Content Delivery Networks (CDNs)__ are widely  used to improve the delivery of static content, such as images, videos, and other web assets. One of the ways that CDNs speeds up  content delivery is through caching. When a user requests content from a CDN,  
+the CDN network looks for the  requested content in its cache.
+If the content is not already in the cache, the CDN fetches it from the origin  server and caches it on its edge servers.
+When another user requests the same content,  the CDN can deliver the content directly from its cache, eliminating the need to  fetch it from the origin server again.
+
+5. __Some load balancers__ can cache resources  to reduce the load on back-end servers. When a user requests content from  a server behind a load balancer, the load balancer can cache the response and  serve it directly to future users who request the same content. This can improve response  times and reduce the load on back-end servers.
+Caching does not always have to be in  memory. 
+
+6. __In the messaging infrastructure__, message brokers such as Kafka can cache  a massive amount of messages on disk. This allows consumers to retrieve  the messages at their own pace. The messages can be cached for a long period  of time based on the retention policy.
+
+7. __Distributed caches__ such as Redis  can store key-value pairs in memory, providing high read/write performance  compared to traditional databases 
+
+8. __Full-text search engines__ like Elastic  Search can index data for document  search and log search, providing quick  and efficient access to specific data.
+
+9. __Even within the database__, there are  multiple levels of caching available. Data is typically written to a write-ahead  log (WAL) before being indexed in a B-tree. The buffer pool is a memory area  used to cache query results, while materialized views can precompute  query results for faster performance. The transaction log records all  transactions and updates to the database,
+while the replication log tracks the  replication state in a database cluster.
+
+Overall, caching data is an essential  technique for optimizing system performance and reducing response time. From  the front end to the back end,  there are many layers of caching to improve the  efficiency of various applications and systems.
+
 __TCP/IP:__ 
 Transmission Control Protocol/Internet Protocol is the foundation of the internet. TCP is responsible for ensuring reliable transmission of data over a network, while IP is responsible for routing data between networks.
 
@@ -215,10 +280,6 @@ __DNS:__ Domain Name System is used to map domain names to IP addresses. DNS ser
 
 
 __Load Balancing:__ The process of distributing incoming traffic across multiple servers to ensure that no single server is overloaded. Load balancing can be done using various algorithms such as round-robin, least connections, and IP hash.
-
-
-__Caching:__ Storing frequently accessed data in a cache to reduce the number of requests made to a server. Caching can be done at various levels such as browser cache, CDN cache, and server cache.
-
 
 __CDNs:__ Content Delivery Networks are networks of servers that are distributed geographically to deliver content to users with high availability and performance.
 
