@@ -109,15 +109,14 @@ public class BinaryTree {
 
 <br>
 
-# System design
-
 [Sytem design primer](https://github.com/donnemartin/system-design-primer#study-guide) - start here
 
 Definately watch the first video CS 75 from Harvard, it is a good basis for future knowledge and it is presented incrementally as a story, so its built up. Pretty great stuff.
 
-## Concepts 
-CAP-theorem (Consistensy, Availability, Partition tolerance)
-- Centralized system: you don't have to choose between __Availability__ and __Consistency__
+# Concepts 
+
+## CAP-theorem (Consistensy, Availability, Partition tolerance)
+- Centralized system: you don't have to choose between __Availability__ and __Consistency__ because there is not network partition.
 - Distributed system: Since partition is guaranteed you always have to choose between __Availability__ and __Consistency__. 
 
 __Consistency:__ A read is guaranteed to return the most recent write for a given client. <br>
@@ -138,14 +137,14 @@ Master-master failover is commonly used in scenarios where high availability, lo
 
 __Partition tolerance:__ The system will continue to function when network partitions occur.
 
-__CP:__ Consistency/Partition Tolerance - In the context of the CAP theorem, the CP model emphasizes consistency and partition tolerance. It means that in the event of a network partition (where nodes in a distributed system are unable to communicate with each other), the system will prioritize maintaining strong consistency. This means that during a partition, some nodes may become unavailable to ensure data consistency across the system. Once the partition is resolved, the system resumes normal operation.
+__CP: Consistency/Partition Tolerance__ - In the context of the CAP theorem, the CP model emphasizes consistency and partition tolerance. It means that in the event of a network partition (where nodes in a distributed system are unable to communicate with each other), the system will prioritize maintaining strong consistency. This means that during a partition, some nodes may become unavailable to ensure data consistency across the system. Once the partition is resolved, the system resumes normal operation.
 
-__AP:__ Availability/Partition Tolerance - In the AP model, the focus is on availability and partition tolerance. It means that the system will prioritize remaining available and accessible to users, even in the presence of network partitions. In this model, there may be temporary inconsistencies or divergent states across different replicas of data. The system allows for eventual consistency, ensuring that all replicas converge to a consistent state over time.
+__AP: Availability/Partition Tolerance__ - In the AP model, the focus is on availability and partition tolerance. It means that the system will prioritize remaining available and accessible to users, even in the presence of network partitions. In this model, there may be temporary inconsistencies or divergent states across different replicas of data. The system allows for eventual consistency, ensuring that all replicas converge to a consistent state over time.
 
 BASE
 ACID
 
-## Real world architectures
+# Real world architectures
 
 ## MapReduce 
 
@@ -170,22 +169,22 @@ ACID
 One third of replicas are on one
 node, two thirds of replicas are on one rack, and the other third are evenly distributed across the remaining racks. This policy improves write performance without compromising data reliability or read performance.
 
-        RACK 1                          RACK 2
-        ---------------                 ---------------
-        |  Node 1     |                 | Node 4      |
-        |             |                 |             |
-        |  FILE_ID1   |                 |  FILE_ID1   |
-        |  BLOCK_ID1  |                 |  BLOCK_ID2  |
-        |-------------|                 |-------------|
-        |             |                 |             |
-        |  Node 2     |                 |  Node 5     |
-        |             |                 |             |
-        |------------ |                 |-------------|
-        |             |                 |  Node 6     |
-        |  Node 3     |                 |             |
-        |             |                 |  FILE_ID1   |
-        |             |                 |  BLOCK_ID3  |
-        ---------------                 ---------------
+            RACK 1                          RACK 2
+            ---------------                 ---------------
+            |  Node 1     |                 | Node 4      |
+            |             |                 |             |
+            |  FILE_ID1   |                 |  FILE_ID1   |
+            |  BLOCK_ID1  |                 |  BLOCK_ID2  |
+            |-------------|                 |-------------|
+            |             |                 |             |
+            |  Node 2     |                 |  Node 5     |
+            |             |                 |             |
+            |------------ |                 |-------------|
+            |             |                 |  Node 6     |
+            |  Node 3     |                 |             |
+            |             |                 |  FILE_ID1   |
+            |             |                 |  BLOCK_ID3  |
+            ---------------                 ---------------
 
 
 
@@ -201,8 +200,6 @@ node, two thirds of replicas are on one rack, and the other third are evenly dis
 3. [What happens](https://www.youtube.com/watch?v=AlkDbnbv7dk&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=10) when you type a URL into your browser?
 
 <br>
-
-### Networking concepts
 
 ## __Caching__ 
 [Video](https://www.youtube.com/watch?v=dGAgxozNWFE)
@@ -267,96 +264,59 @@ Caching does not always have to be in  memory.
 9. __Even within the database__, there are  multiple levels of caching available. Data is typically written to a write-ahead  log (WAL) before being indexed in a B-tree. The buffer pool is a memory area  used to cache query results, while materialized views can precompute  query results for faster performance. The transaction log records all  transactions and updates to the database,
 while the replication log tracks the  replication state in a database cluster.
 
+10. __Caching at an object level__, you can cache objects in your application for faster retrieval. See your data as an object, similar to what you do with your application code. Have your application assemble the dataset from the database into a class sinstance or a data structure(s):<br> - Remove the object from cache if its underlying data has changed
+
+
 Overall, caching data is an essential  technique for optimizing system performance and reducing response time. From  the front end to the back end,  there are many layers of caching to improve the  efficiency of various applications and systems.
 
-__TCP/IP:__ 
-Transmission Control Protocol/Internet Protocol is the foundation of the internet. TCP is responsible for ensuring reliable transmission of data over a network, while IP is responsible for routing data between networks.
+### When to update the cache
+#### Cache-aside
 
+- Look for entry in cache, resulting in a cache miss
+- Load entry from the database
+- Add entry to cache
+- Return entry
 
-__HTTP:__ Hypertext Transfer Protocol is used for transmitting data over the internet. It is used for communication between web servers and web clients.
+``` python
+def get_user(self, user_id):
+    user = cache.get("user.{0}", user_id)
+    if user is None:
+        user = db.query("SELECT * FROM users WHERE user_id = {0}", user_id)
+        if user is not None:
+            key = "user.{0}".format(user_id)
+            cache.set(key, json.dumps(user))
+    return user
+```
+Subsequent reads of data added to cache are fast. Cache-aside is also referred to as lazy loading. Only requested data is cached, which avoids filling up the cache with data that isn't requested.
 
+<br>
 
-__DNS:__ Domain Name System is used to map domain names to IP addresses. DNS servers translate human-readable domain names into IP addresses that machines can understand.
+#### Write-through
+The application uses the cache as the main data store, reading and writing data to it, while the cache is responsible for reading and writing to the database:
 
+- Application adds/updates entry in cache
+- Cache synchronously writes entry to data store
+- Return
 
-__Load Balancing:__ The process of distributing incoming traffic across multiple servers to ensure that no single server is overloaded. Load balancing can be done using various algorithms such as round-robin, least connections, and IP hash.
+Application code:
 
-__CDNs:__ Content Delivery Networks are networks of servers that are distributed geographically to deliver content to users with high availability and performance.
+    set_user(12345, {"foo":"bar"})
 
+Cache code:
 
-__Latency vs. Bandwidth:__ Latency refers to the time it takes for a request to travel from the client to the server and back, while bandwidth refers to the amount of data that can be transmitted over a network in a given amount of time.
+``` python
+def set_user(user_id, values):
+    user = db.query("UPDATE Users WHERE id = {0}", user_id, values)
+    cache.set(user_id, user)
+```
 
+Write-through is a slow overall operation due to the write operation, but subsequent reads of just written data are fast. Users are generally more tolerant of latency when updating data than reading data. Data in the cache is not stale.
 
-__Routing:__ The process of selecting a path for network traffic to travel from the source to the destination. Routing can be done using various algorithms such as distance vector routing, link-state routing, and path vector routing.
+<br>
 
+#### Write-behind (write-back)
 
-__VPN:__ Virtual Private Network is a secure connection between two devices over the internet. VPNs are used to protect data and provide secure remote access to resources.
-__Frewall:__ A security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules. Firewalls are used to protect networks from unauthorized access and malicious traffic.
+In write-behind, the application does the following:
 
-__OSI model:__ The Open Systems Interconnection model is a conceptual framework used to describe the communication between different computer systems. It is organized into seven layers, each responsible for a different aspect of network communication.
-
-__NAT:__ Network Address Translation is a technique used to map public IP addresses to private IP addresses. NAT allows multiple devices on a private network to share a single public IP address.
-
-__SSL/TLS:__ Secure Sockets Layer/Transport Layer Security is a protocol used to provide secure communication over the internet. SSL/TLS uses encryption to protect data in transit and ensure that it is not intercepted or tampered with.
-
-__BGP:__ Border Gateway Protocol is a routing protocol used to exchange routing information between different networks on the internet. BGP is used by internet service providers to route traffic between networks.
-VLAN: Virtual Local Area Network is a logical grouping of network devices that are physically separate but appear as if they are on the same network. VLANs are used to segment networks for security and management purposes.
-
-__Traceroute:__ A network diagnostic tool used to trace the path that a packet takes from the source to the destination. Traceroute sends packets with increasing time-to-live values and reports the IP addresses of the routers along the path.
-
-__IPv6:__ Internet Protocol version 6 is the latest version of the Internet Protocol. IPv6 provides a larger address space than IPv4 and improves security and performance.
-
-__ICMP:__ Internet Control Message Protocol is used for error reporting and network diagnostics. ICMP messages are sent by network devices to report errors or request information about the network.
-
-__NAT traversal:__ The process of allowing traffic to pass through a NAT device. NAT traversal techniques include STUN, TURN, and ICE.
-Network segmentation: The process of dividing a network into smaller subnetworks for security and management purposes. Network segmentation can be done using VLANs, subnets, or firewalls.
-
-### System design concepts
-
-__Scalability:__ Scalability refers to the ability of a system to handle increasing amounts of load or traffic by adding more resources. A scalable system can handle more users, more data, and more requests without significant performance degradation. For example, a scalable e-commerce website should be able to handle a sudden surge in traffic during a flash sale without crashing or becoming slow.
-
-__Availability:__ Availability is the measure of how often a system is accessible and usable. High availability means that a system is available most of the time, with minimal downtime. For example, a highly available cloud storage service should be accessible to users at all times, even if some servers fail or undergo maintenance.
-
-__Reliability:__ Reliability is the measure of how often a system functions as expected without failures or errors. A reliable system should be able to recover from failures and maintain data integrity. For example, a reliable banking system should not lose or corrupt customer data, and should be able to recover from hardware failures or network outages.
-
-__Latency:__ Latency is the time it takes for a system to respond to a request. Low latency is important for real-time systems, such as online games, video streaming, and financial trading platforms. For example, a low-latency trading platform should be able to execute trades quickly, in order to take advantage of market opportunities.
-
-__Throughput:__ Throughput is the number of requests a system can handle in a given amount of time. High throughput is important for systems that need to process large amounts of data, such as databases, data warehouses, and big data analytics platforms. For example, a high-throughput data processing system should be able to analyze large volumes of data quickly, in order to generate insights for businesses.
-
-__Consistency:__ Consistency is the degree to which data is the same across different parts of a system. In a consistent system, all nodes have the same data at the same time. Consistency can be achieved by using distributed databases, implementing consensus algorithms, and using version control. For example, a consistent messaging system should ensure that all users see the same messages in the same order, regardless of which server they are connected to.
-
-__Partitioning:__ Partitioning is the process of dividing a system into smaller components or partitions. Partitioning can help improve scalability and availability by distributing data and processing across multiple servers. Partitioning can be done by using sharding, horizontal scaling, and vertical scaling. For example, a partitioned database can store customer data for different regions or countries in different partitions, to improve performance and reduce latency.
-
-__Caching:__ Caching is the process of storing frequently accessed data in a cache to reduce the number of requests made to a system. Caching can help improve latency and throughput by reducing the amount of time it takes to access data. Caching can be implemented using in-memory caches, distributed caches, and content delivery networks (CDNs). For example, a web browser can cache frequently accessed website data, such as images and scripts, to reduce the time it takes to load the page.
-
-__Load balancing:__ Load balancing is the process of distributing incoming traffic across multiple servers to ensure that no single server is overloaded. Load balancing can help improve scalability, availability, and throughput by distributing requests across multiple servers. Load balancing can be done using hardware load balancers, software load balancers, and DNS load balancing. For example, a load-balanced web server cluster can distribute incoming traffic across multiple servers, to improve response times and reduce the risk of server crashes.
-
-__Microservices:__ Microservices is an architectural pattern that involves breaking down a large application into smaller, independent services that can be deployed and scaled separately. Each microservice should have its own database, API, and user interface. Microservices can help improve scalability, availability, and resilience by allowing developers to make changes and deploy updates to individual services without affecting the entire system. For example, a social media platform can be broken down into microservices for user authentication, friend requests, notifications, and news feeds.
-
-__Service-oriented architecture (SOA):__ Service-oriented architecture is an architectural pattern that involves creating reusable services that can be accessed by multiple applications or systems. SOA allows applications to communicate with each other by using standardized interfaces and protocols. SOA can help improve interoperability, flexibility, and reusability by decoupling services from specific applications or systems. For example, a payment gateway service can be used by multiple e-commerce websites to process payments, without having to implement their own payment processing system.
-
-__Message queues:__ Message queues are a type of middleware that enables asynchronous communication between applications or services. Message queues can help improve scalability, availability, and resilience by decoupling services and allowing them to operate independently. Message queues can also help ensure message delivery and provide message ordering and filtering capabilities. For example, a message queue can be used to handle user registration requests for an e-commerce website, with each request being processed by a separate microservice.
-
-__Event-driven architecture (EDA):__ Event-driven architecture is an architectural pattern that involves reacting to events or messages that are generated by the system or external sources. EDA can help improve scalability, availability, and responsiveness by allowing systems to react quickly to changes or events. EDA can also help simplify system design and reduce coupling between components. For example, an event-driven system can be used to detect fraud or suspicious activity in real-time, by analyzing user behavior and triggering alerts or notifications.
-
-__MapReduce:__ MapReduce is a programming model and framework for processing large amounts of data in parallel across multiple nodes. MapReduce can help improve throughput and scalability by dividing data processing into smaller tasks that can be executed in parallel. MapReduce also provides fault tolerance and data locality, by ensuring that tasks are executed on nodes where the data is located. For example, MapReduce can be used to analyze log files or customer data for a large online retailer, to generate insights for marketing and product development.
-
-__Containerization:__ Containerization is a method of packaging software applications and their dependencies into lightweight, portable containers that can be deployed and run consistently across different environments. Containerization can help improve portability, scalability, and reliability by isolating applications from the underlying infrastructure and ensuring consistent dependencies. Containerization can be done using container engines such as Docker or Kubernetes. For example, a containerized microservice can be easily deployed and scaled across multiple servers, without having to worry about compatibility or dependencies.
-
-__Serverless computing:__ Serverless computing is a cloud computing model where applications are run on demand in response to specific events or triggers, without the need for managing infrastructure or servers. Serverless computing can help improve scalability, availability, and cost efficiency by allowing developers to focus on application logic, rather than infrastructure management. Serverless computing can be done using platforms such as AWS Lambda or Google Cloud Functions. For example, a serverless application can be used to process user-generated content, with each content item being processed by a separate function in response to a trigger.
-
-__Content delivery network (CDN):__ A content delivery network is a distributed system of servers that delivers web content to users based on their geographic location, network conditions, and content type. CDNs can help improve performance, scalability, and availability by caching content in edge locations close to users and routing requests to the nearest server. CDNs can also help reduce network latency and bandwidth costs by minimizing the distance between the user and the content. For example, a CDN can be used to deliver images, videos, and other static content for a popular news website, to ensure fast and reliable content delivery to users worldwide.
-
-__Load balancing:__ Load balancing is a technique for distributing traffic across multiple servers or nodes in a network, to improve performance, availability, and scalability. Load balancing can help prevent server overload, reduce response times, and ensure high availability by redirecting traffic to healthy servers. Load balancing can be done using hardware or software load balancers, such as F5 or HAProxy. For example, a load balancer can be used to distribute incoming requests to multiple instances of a web application, to ensure that each server is used efficiently and that the application remains responsive under heavy load.
-
-__Monitoring and logging:__ Monitoring and logging are essential components of system design, as they allow developers to track system performance, detect issues, and troubleshoot problems. Monitoring involves collecting and analyzing metrics and events from various system components, such as servers, applications, and networks. Logging involves capturing and storing system events, errors, and user actions for later analysis and troubleshooting. Monitoring and logging can be done using tools such as Prometheus, Grafana, or ELK. For example, monitoring and logging can be used to track system uptime, response times, error rates, and user activity for an e-commerce website, to ensure optimal performance and user experience.
-
-[Best handpicked system design](https://bestresources.co/resource/best-handpicked-system-design-interesting-reads-qvbimi) - interesting reads
-
-[Actual system design interview questions](https://bestresources.co/resource/system-design-actual-interview-questions-qvbj2c) - Videos, articles about their solutions
-
-[Example mock interviews](https://www.youtube.com/@tryexponent) - Mock interviews, anything that can help you land a good job in tech
-
-https://www.hiredintech.com/classrooms/system-design/lesson/61
-
-https://www.reddit.com/r/leetcode/comments/uc3zex/what_are_good_resources_for_system_design/
+- Add/update entry in cache
+- Asynchronously write entry to the data store, improving write performance
