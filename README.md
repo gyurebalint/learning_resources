@@ -113,6 +113,10 @@ public class BinaryTree {
 
 Definately watch the first video CS 75 from Harvard, it is a good basis for future knowledge and it is presented incrementally as a story, so its built up. Pretty great stuff.
 
+Great resource - [github](https://github.com/systemdesignfightclub/SDFC/), [youtube](https://www.youtube.com/@SDFC/featured)
+
+
+
 # Concepts 
 
 ## CAP-theorem (Consistensy, Availability, Partition tolerance)
@@ -140,66 +144,6 @@ __Partition tolerance:__ The system will continue to function when network parti
 __CP: Consistency/Partition Tolerance__ - In the context of the CAP theorem, the CP model emphasizes consistency and partition tolerance. It means that in the event of a network partition (where nodes in a distributed system are unable to communicate with each other), the system will prioritize maintaining strong consistency. This means that during a partition, some nodes may become unavailable to ensure data consistency across the system. Once the partition is resolved, the system resumes normal operation.
 
 __AP: Availability/Partition Tolerance__ - In the AP model, the focus is on availability and partition tolerance. It means that the system will prioritize remaining available and accessible to users, even in the presence of network partitions. In this model, there may be temporary inconsistencies or divergent states across different replicas of data. The system allows for eventual consistency, ensuring that all replicas converge to a consistent state over time.
-
-BASE
-ACID
-
-# Real world architectures
-
-## MapReduce 
-
-[at Google in 2004 by Jeffrey Dean and Sanjay Ghemawat] <br> [article](http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf), [video 1](https://www.youtube.com/watch?v=cHGaQz0E7AU), [video 2](https://www.youtube.com/watch?v=cvhKoniK5Uo)
-
-<br>
-
-## Hadoop file system 
-
-[article](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.pdf) - a very good article by Apache
-
-[video](https://www.youtube.com/watch?v=nRX4_3qf3rc)
-- What is HDFS?
-- What is the diff between a normal file system and hdfs?
-- what problem does it solve?
-- What is the NameNode, what does it do, how many instances are there?
-- What is the DataNode, what does it do, how many instances are there? 
-- What is the FileSystem Namespace and who is responsible for maintaining it?
-- What are EditLog and FsImage?
-
-### Replica Placement
-One third of replicas are on one
-node, two thirds of replicas are on one rack, and the other third are evenly distributed across the remaining racks. This policy improves write performance without compromising data reliability or read performance.
-
-            RACK 1                          RACK 2
-            ---------------                 ---------------
-            |  Node 1     |                 | Node 4      |
-            |             |                 |             |
-            |  FILE_ID1   |                 |  FILE_ID1   |
-            |  BLOCK_ID1  |                 |  BLOCK_ID2  |
-            |-------------|                 |-------------|
-            |             |                 |             |
-            |  Node 2     |                 |  Node 5     |
-            |             |                 |             |
-            |------------ |                 |-------------|
-            |             |                 |  Node 6     |
-            |  Node 3     |                 |             |
-            |             |                 |  FILE_ID1   |
-            |             |                 |  BLOCK_ID3  |
-            ---------------                 ---------------
-
-
-
-### Videos
-1. [8 design patterns](https://www.youtube.com/watch?v=tAuRQs_d9F8) every developer should know
-
-1. 10 [System design concepts](https://www.youtube.com/watch?v=i53Gi_K3o7I) explained consisely
-
-1. What is the difference between a [process and a thread](https://www.youtube.com/watch?v=4rLW7zg21gI&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=8)?
-
-2. What is [HTTPS and TLS](https://www.youtube.com/watch?v=j9QmMEWmcfo&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=9)?
-
-3. [What happens](https://www.youtube.com/watch?v=AlkDbnbv7dk&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=10) when you type a URL into your browser?
-
-<br>
 
 ## __Caching__ 
 [Video](https://www.youtube.com/watch?v=dGAgxozNWFE)
@@ -316,7 +260,107 @@ Write-through is a slow overall operation due to the write operation, but subseq
 
 #### Write-behind (write-back)
 
+
+User --> Write to cache --> Queue --> Event processor --> DB
+
 In write-behind, the application does the following:
 
 - Add/update entry in cache
 - Asynchronously write entry to the data store, improving write performance
+
+<br>
+
+## Consistent hashing
+[video](https://www.youtube.com/watch?v=UF9Iqmg94tk)
+
+Real life examples <br>
+Dynamo Db
+Apache cassandra -> Data partitioning
+
+Content deliverz networks -> Distribute web content evenly
+Load balancers -> Distribute persistent connections evenly
+
+Simple hasing
+Number of nodes (computers, servers, buckets etc) = n <br>
+hashFunction(objectKey) % n <br>
+Problem with simple hasing is when the number of nodes change. The data has to be rebalanced,
+we have to move __all the data__.
+
+Consistent hashing - image
+Accpeting that the number of nodes change, we not only hash the object keys, but
+the server names as well. This creates a ring of hashes, which will
+help us find the node for the object we are looking up. <br>
+This way we don't have to move all the data, just data from one server.
+Even this could be a lot therefore problematic. So we create virtual nodes
+out of our nodes, and alternating them on the hash ring we ensure
+that the data that'll have to be moved is minimized.
+
+![consistent-hashing](./images/consistent-hashing.png)
+
+                In this image only *k0* keys have to be moved
+
+BASE
+ACID
+
+# Real world architectures
+
+## MapReduce 
+
+[at Google in 2004 by Jeffrey Dean and Sanjay Ghemawat] <br> [article](http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf), [video 1](https://www.youtube.com/watch?v=cHGaQz0E7AU), [video 2](https://www.youtube.com/watch?v=cvhKoniK5Uo)
+
+<br>
+
+## Hadoop file system 
+
+[article](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.pdf) - a very good article by Apache
+
+[video](https://www.youtube.com/watch?v=nRX4_3qf3rc)
+- What is HDFS?
+- What is the diff between a normal file system and hdfs?
+- what problem does it solve?
+- What is the NameNode, what does it do, how many instances are there?
+- What is the DataNode, what does it do, how many instances are there? 
+- What is the FileSystem Namespace and who is responsible for maintaining it?
+- What are EditLog and FsImage?
+
+### Replica Placement
+One third of replicas are on one
+node, two thirds of replicas are on one rack, and the other third are evenly distributed across the remaining racks. This policy improves write performance without compromising data reliability or read performance.
+
+            RACK 1                          RACK 2
+            ---------------                 ---------------
+            |  Node 1     |                 | Node 4      |
+            |             |                 |             |
+            |  FILE_ID1   |                 |  FILE_ID1   |
+            |  BLOCK_ID1  |                 |  BLOCK_ID2  |
+            |-------------|                 |-------------|
+            |             |                 |             |
+            |  Node 2     |                 |  Node 5     |
+            |             |                 |             |
+            |------------ |                 |-------------|
+            |             |                 |  Node 6     |
+            |  Node 3     |                 |             |
+            |             |                 |  FILE_ID1   |
+            |             |                 |  BLOCK_ID3  |
+            ---------------                 ---------------
+
+
+### Videos
+1. [8 design patterns](https://www.youtube.com/watch?v=tAuRQs_d9F8) every developer should know
+
+1. 10 [System design concepts](https://www.youtube.com/watch?v=i53Gi_K3o7I) explained consisely
+
+1. What is the difference between a [process and a thread](https://www.youtube.com/watch?v=4rLW7zg21gI&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=8)?
+
+2. What is [HTTPS and TLS](https://www.youtube.com/watch?v=j9QmMEWmcfo&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=9)?
+
+3. [What happens](https://www.youtube.com/watch?v=AlkDbnbv7dk&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=10) when you type a URL into your browser?
+
+<br>
+
+
+
+## Design tinyUrl / bit.ly
+Solution - [youtube](https://www.youtube.com/watch?v=tm-SWO9gUAU)
+
+Task:
