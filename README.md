@@ -297,10 +297,45 @@ that the data that'll have to be moved is minimized.
 
 ![consistent-hashing](./images/consistent-hashing.png)
 
-                In this image only *k0* keys have to be moved
+                In this image only k0 keys have to be moved
+
+## ACID (SQL)
+In highly consistent cases such as an SQL database we need the following to be true. 
+1. __Atomicity:__ Atomicity guarantees that a transaction is treated as a single indivisible unit of work. It means that either all the __changes made within a transaction are successfully committed, or none of them are__. If any part of the transaction fails, all changes are rolled back to the original state.
+
+    - Example: Consider a banking application where a customer transfers money from one account to another. The transaction includes debiting the sender's account and crediting the recipient's account. Atomicity ensures that if either the debit or the credit operation fails, the entire transaction is rolled back, leaving both accounts unaffected.
+    Isolation:
+    Isolation ensures that concurrent execution of transactions does not produce unexpected or incorrect results. Each transaction appears to execute in isolation, without interference from other concurrent transactions. It prevents data inconsistencies caused by concurrent access to shared data.
+
+<br>
+
+
+2. __Consistency:__ Consistency ensures that a transaction __brings the database from one valid state to another.__ It maintains data integrity by enforcing integrity constraints, rules, and relationships defined in the database schema.
+
+    - Example: Suppose you have a database table where the age of a person should always be a positive value. If a transaction attempts to update a person's age to a negative value, the consistency property ensures that the transaction is rejected, and the database remains in a valid and consistent state.
+
+<br>
+
+3. __Isolation:__ Isolation ensures that concurrent execution of transactions does not produce unexpected or incorrect results. Each transaction appears to __execute in isolation, without interference from other concurrent transactions.__ It prevents data inconsistencies caused by concurrent access to shared data.
+
+    - Example: If two users simultaneously withdraw money from the same account, isolation ensures that their transactions do not interfere with each other. Each transaction reads the initial balance, performs the withdrawal, and updates the balance independently, preserving data consistency.
+
+<br>
+
+4. __Durability:__ Durability guarantees that once a __transaction is committed, its changes are permanent and will survive any subsequent system failures__, such as power outages or crashes. The committed data is stored safely and can be retrieved even in the presence of failures.
+
+    - Example: When a transaction is committed in a database, the changes made during that transaction are durably stored on disk or other persistent storage media. Even if there is a system failure immediately after the commit, the changes are not lost and can be recovered when the system restarts.
+
+Wikipedia on ACID <br>
+> A database transaction symbolizes a unit of work, performed within a database management system (or similar system) against a database, that is treated in a coherent and reliable way independent of other transactions. __A transaction generally represents any change in a database.__ Transactions in a database environment have two main purposes:  
+>- To provide reliable units of work that __allow correct recovery from failures and keep a database consistent even in cases of system failure.__ For example: when execution prematurely and unexpectedly stops (completely or partially) in which case many operations upon a database remain uncompleted, with unclear status.
+> - To provide __isolation between programs accessing a database concurrently.__ If this isolation is not provided, the programs' outcomes are possibly erroneous.
+
+> In a database management system, a transaction is a single unit of logic or work, sometimes made up of multiple operations. Any logical calculation done in a consistent mode in a database is known as a transaction. One example is a transfer from one bank account to another: the complete transaction requires subtracting the amount to be transferred from one account and adding that same amount to the other. <br>
+
+> A database transaction, by definition, must be atomic (it must either be complete in its entirety or have no effect whatsoever), consistent (it must conform to existing constraints in the database), isolated (it must not affect other transactions) and durable (it must get written to persistent storage).[1] Database practitioners often refer to these properties of database transactions using the acronym ACID.*
 
 BASE
-ACID
 
 # Real world architectures
 
