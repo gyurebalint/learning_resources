@@ -135,7 +135,7 @@ __Throughput:__ Throughput is the number of requests a system can handle in a gi
 
 # Concepts 
 
-## CAP-theorem (Consistensy, Availability, Partition tolerance)
+## CAP-theorem (Consistency, Availability, Partition tolerance)
 - Centralized system: you don't have to choose between __Availability__ and __Consistency__ because there is not network partition.
 - Distributed system: Since partition is guaranteed you always have to choose between __Availability__ and __Consistency__. 
 
@@ -313,6 +313,7 @@ that the data that'll have to be moved is minimized.
 
 ![consistent-hashing](./images/consistent-hashing.png)
 
+
                 In this image only k0 keys have to be moved
 
 ## ACID (SQL)
@@ -380,9 +381,13 @@ BASE provides an alternative approach to system design, trading off strict consi
 [at Google in 2004 by Jeffrey Dean and Sanjay Ghemawat] <br> [article](http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf), [video 1](https://www.youtube.com/watch?v=cHGaQz0E7AU), [video 2](https://www.youtube.com/watch?v=cvhKoniK5Uo)
 
 - What is MapReduce?
-- What is the basic architecture? - image
+- What is the basic architecture? - [image](./images/mapreduce.png)
 - What filesystem is required?
 - What kind of problems does it solve? Give me 2 examples.
+
+![mapreduce workflow overview](./images/mapreduce.png)
+
+                                Execution overview
 
 <br>
 

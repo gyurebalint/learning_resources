@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "/home/radgaul/.nuget/packages/": {}
+    "/home/theradgaul/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/radgaul/dev/learning_resources/datastructures/datastructures.csproj",
+      "projectUniqueName": "/home/theradgaul/Documents/GitHub/learning_resources/datastructures/datastructures.csproj",
       "projectName": "datastructures",
-      "projectPath": "/home/radgaul/dev/learning_resources/datastructures/datastructures.csproj",
-      "packagesPath": "/home/radgaul/.nuget/packages/",
-      "outputPath": "/home/radgaul/dev/learning_resources/datastructures/obj/",
+      "projectPath": "/home/theradgaul/Documents/GitHub/learning_resources/datastructures/datastructures.csproj",
+      "packagesPath": "/home/theradgaul/.nuget/packages/",
+      "outputPath": "/home/theradgaul/Documents/GitHub/learning_resources/datastructures/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/radgaul/.nuget/NuGet/NuGet.Config"
+        "/home/theradgaul/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
