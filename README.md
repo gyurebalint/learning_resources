@@ -115,6 +115,22 @@ Definately watch the first video CS 75 from Harvard, it is a good basis for futu
 
 Great resource - [github](https://github.com/systemdesignfightclub/SDFC/), [youtube](https://www.youtube.com/@SDFC/featured)
 
+# Definitions
+
+__Consistency:__ Consistency is the degree to which data is the same across different parts of a system. In a consistent system, all nodes have the same data at the same time. Consistency can be achieved by using distributed databases, implementing consensus algorithms, and using version control. For example, a consistent messaging system should ensure that all users see the same messages in the same order, regardless of which server they are connected to.
+
+__Availability:__ Availability is the measure of how often a system is accessible and usable. High availability means that a system is available most of the time, with minimal downtime. For example, a highly available cloud storage service should be accessible to users at all times, even if some servers fail or undergo maintenance.
+
+__Reliability:__ Reliability is the measure of how often a system functions as expected without failures or errors. A reliable system should be able to recover from failures and maintain data integrity. For example, a reliable banking system should not lose or corrupt customer data, and should be able to recover from hardware failures or network outages.
+
+__Scalability:__ Scalability refers to the ability of a system to handle increasing amounts of load or traffic by adding more resources. A scalable system can handle more users, more data, and more requests without significant performance degradation. For example, a scalable e-commerce website should be able to handle a sudden surge in traffic during a flash sale without crashing or becoming slow.
+
+__Latency:__ Latency is the time it takes for a system to respond to a request. Low latency is important for real-time systems, such as online games, video streaming, and financial trading platforms. For example, a low-latency trading platform should be able to execute trades quickly, in order to take advantage of market opportunities.
+
+__Throughput:__ Throughput is the number of requests a system can handle in a given amount of time. High throughput is important for systems that need to process large amounts of data, such as databases, data warehouses, and big data analytics platforms. For example, a high-throughput data processing system should be able to analyze large volumes of data quickly, in order to generate insights for businesses.
+
+
+
 
 
 # Concepts 
@@ -300,7 +316,7 @@ that the data that'll have to be moved is minimized.
                 In this image only k0 keys have to be moved
 
 ## ACID (SQL)
-In highly consistent cases such as an SQL database we need the following to be true. 
+hese properties are crucial for applications that require strict data consistency and reliability, such as financial systems, e-commerce platforms, SQL databases and critical enterprise systems.
 1. __Atomicity:__ Atomicity guarantees that a transaction is treated as a single indivisible unit of work. It means that either all the __changes made within a transaction are successfully committed, or none of them are__. If any part of the transaction fails, all changes are rolled back to the original state.
 
     - Example: Consider a banking application where a customer transfers money from one account to another. The transaction includes debiting the sender's account and crediting the recipient's account. Atomicity ensures that if either the debit or the credit operation fails, the entire transaction is rolled back, leaving both accounts unaffected.
@@ -335,13 +351,38 @@ Wikipedia on ACID <br>
 
 > A database transaction, by definition, must be atomic (it must either be complete in its entirety or have no effect whatsoever), consistent (it must conform to existing constraints in the database), isolated (it must not affect other transactions) and durable (it must get written to persistent storage).[1] Database practitioners often refer to these properties of database transactions using the acronym ACID.*
 
-BASE
+<br>
+
+## BASE
+It represents an alternative approach to system design that relaxes some of the strict consistency guarantees provided by the ACID properties. BASE is often used in distributed systems, particularly in scenarios where high availability and scalability are prioritized over strong consistency.
+
+1. __Basically Available:__ Basically Available means that the system remains operational and responsive to user requests even in the face of failures or partial outages. It focuses on providing a working system that continues to function, albeit potentially with reduced functionality or performance.
+    - Example: Consider an e-commerce website that experiences a database failure. In a basically available system, the website might still be accessible to users, allowing them to browse and add items to their carts. However, certain features like checking out or updating user profiles may be temporarily disabled until the database issue is resolved.
+
+2. __Soft State:__ Soft State refers to the idea that the system's state can change over time even in the absence of input or activity. The system allows for eventual consistency, where the state of the system may vary between different nodes or replicas, and the system tolerates temporary inconsistencies.
+    - Example: In a distributed caching system, when data is updated in one node, it may take some time for the update to propagate to all other nodes due to network delays or replication mechanisms. During this period, different nodes may have slightly different versions of the data, resulting in a soft state. Eventually, the system converges to a consistent state as updates propagate and reach all nodes.
+
+3. __Eventually Consistent:__ Eventually Consistent means that the system will reach a consistent state over time. It acknowledges that achieving strong consistency across all nodes in a distributed system may be challenging or impractical, especially in large-scale or geographically distributed environments. Instead, the focus is on ensuring that the system converges to a consistent state in the long run.
+    - Example: In a distributed NoSQL database, if multiple replicas receive concurrent updates, the system may allow temporary inconsistencies across replicas. However, over time, through mechanisms like conflict resolution or background synchronization, the replicas will converge to a consistent state.
+
+BASE provides an alternative approach to system design, trading off strict consistency guarantees for improved availability, scalability, and partition tolerance. It is often employed in systems like large-scale web applications, content delivery networks (CDNs), or distributed databases where maintaining high availability and handling large volumes of data are critical.
+
+## Event sourcing - Streaming
+[difference](https://www.youtube.com/watch?v=I3Mlt7GCeIU) - 
+[event streaming](https://www.youtube.com/watch?v=7Bh10yAycws)
+
+
 
 # Real world architectures
 
 ## MapReduce 
 
 [at Google in 2004 by Jeffrey Dean and Sanjay Ghemawat] <br> [article](http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf), [video 1](https://www.youtube.com/watch?v=cHGaQz0E7AU), [video 2](https://www.youtube.com/watch?v=cvhKoniK5Uo)
+
+- What is MapReduce?
+- What is the basic architecture? - image
+- What filesystem is required?
+- What kind of problems does it solve? Give me 2 examples.
 
 <br>
 
@@ -379,8 +420,24 @@ node, two thirds of replicas are on one rack, and the other third are evenly dis
             |             |                 |  BLOCK_ID3  |
             ---------------                 ---------------
 
+# Architectural patterns
 
-### Videos
+## __CQRS (Command Query Responsibility Segregation)__ 
+
+CQRS is a software architectural pattern that separates the responsibilities of handling commands (write operations that modify the system state) and queries (read operations that retrieve data). It recognizes that the requirements for reading data from a system are often different from those for modifying data, and tailors the design of each aspect accordingly.
+
+In a CQRS architecture, the system is divided into two parts:
+
+- __Command Side:__
+The command side of the system handles operations that modify the state. It accepts commands or requests for changes, processes them, and updates the state accordingly. The command side is responsible for enforcing business rules, validating input, and persisting the changes.
+- __Query Side:__
+The query side of the system focuses on retrieving data and serving read requests. It maintains a separate read model optimized for querying and fetching data. The read model is denormalized and structured to efficiently serve specific queries, ensuring high performance for read operations.
+
+In this example, CQRS allows the system to optimize write operations (commands) separately from read operations (queries). The command side handles the complex business logic of fund transfers, ensuring data integrity and enforcing business rules. The query side provides fast and efficient read access to the denormalized account balance data, enhancing the performance and scalability of the read operations.
+
+By decoupling the command and query responsibilities, CQRS enables scalability, flexibility, and improved performance in systems with distinct requirements for read and write operations. It allows for independent scaling of the command and query sides, as well as tailored optimization strategies for each aspect of the system.
+
+# Videos
 1. [8 design patterns](https://www.youtube.com/watch?v=tAuRQs_d9F8) every developer should know
 
 1. 10 [System design concepts](https://www.youtube.com/watch?v=i53Gi_K3o7I) explained consisely
