@@ -289,12 +289,11 @@ In write-behind, the application does the following:
 ## Consistent hashing
 [video](https://www.youtube.com/watch?v=UF9Iqmg94tk)
 
-Real life examples <br>
-Dynamo Db
-Apache cassandra -> Data partitioning
-
-Content deliverz networks -> Distribute web content evenly
-Load balancers -> Distribute persistent connections evenly
+|Where|What|
+|-----|----|
+|Dynamo Db/Apache cassandra| Data partitioning|
+|Content delivery networks | Distribute web content evenly|
+|Load balancers | Distribute persistent connections evenly|
 
 Simple hasing
 Number of nodes (computers, servers, buckets etc) = n <br>
@@ -311,10 +310,28 @@ Even this could be a lot therefore problematic. So we create virtual nodes
 out of our nodes, and alternating them on the hash ring we ensure
 that the data that'll have to be moved is minimized.
 
-![consistent-hashing](./images/consistent-hashing.png)
+![consistent-hashing](./files/consistent-hashing.png)
 
 
                 In this image only k0 keys have to be moved
+
+## Problems it solves
+
+Consistent hashing solves several problems in distributed systems:
+
+Load Balancing:
+Consistent hashing helps distribute incoming requests or data across a cluster of servers in a balanced manner. It ensures that the load is evenly distributed, preventing hotspots where a few servers become overwhelmed with requests while others remain underutilized. By providing a consistent mapping between keys and servers, consistent hashing enables efficient load balancing in dynamic environments.
+
+Scalability:
+In distributed systems, the number of servers or nodes can change dynamically due to scaling events like adding or removing servers. Traditional hashing schemes break the mapping between keys and servers when the server set changes, leading to significant remapping and redistribution of data. Consistent hashing minimizes the data movement required during server additions or removals, allowing the system to scale seamlessly with minimal disruption.
+
+Caching:
+Consistent hashing is often used in caching systems to determine which cache node or server should store and serve a specific item. It allows cache nodes to be added or removed without affecting the cached data significantly. With consistent hashing, when a cache node is added or removed, only a portion of the keys needs to be remapped, reducing the impact on cache performance.
+
+Fault Tolerance:
+Distributed systems are prone to server failures. Consistent hashing provides fault tolerance by redistributing the keys and load to the remaining servers when a server fails. Since only a portion of the keys is affected, the impact on the overall system performance is minimized. The existing key-to-server mapping remains intact, and the system can continue to operate without disruption.
+
+Overall, consistent hashing addresses load balancing, scalability, caching efficiency, and fault tolerance in distributed systems. It provides a solution to the challenges posed by dynamic server sets and ensures a balanced distribution of data and workload, enabling systems to handle high traffic, scale seamlessly, and recover from failures efficiently.
 
 ## ACID (SQL)
 hese properties are crucial for applications that require strict data consistency and reliability, such as financial systems, e-commerce platforms, SQL databases and critical enterprise systems.
@@ -381,11 +398,11 @@ BASE provides an alternative approach to system design, trading off strict consi
 [at Google in 2004 by Jeffrey Dean and Sanjay Ghemawat] <br> [article](http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf), [video 1](https://www.youtube.com/watch?v=cHGaQz0E7AU), [video 2](https://www.youtube.com/watch?v=cvhKoniK5Uo)
 
 - What is MapReduce?
-- What is the basic architecture? - [image](./images/mapreduce.png)
+- What is the basic architecture? - [image](./files/mapreduce.png)
 - What filesystem is required?
 - What kind of problems does it solve? Give me 2 examples.
 
-![mapreduce workflow overview](./images/mapreduce.png)
+![mapreduce workflow overview](./files/mapreduce.png)
 
                                 Execution overview
 
@@ -425,6 +442,14 @@ node, two thirds of replicas are on one rack, and the other third are evenly dis
             |             |                 |  BLOCK_ID3  |
             ---------------                 ---------------
 
+## DynamoDb
+
+## Pregel (graph, page ranking)
+
+https://blog.acolyer.org/2015/05/26/pregel-a-system-for-large-scale-graph-processing/
+
+https://people.apache.org/~edwardyoon/documents/pregel.pdf
+
 # Architectural patterns
 
 ## __CQRS (Command Query Responsibility Segregation)__ 
@@ -452,6 +477,8 @@ By decoupling the command and query responsibilities, CQRS enables scalability, 
 2. What is [HTTPS and TLS](https://www.youtube.com/watch?v=j9QmMEWmcfo&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=9)?
 
 3. [What happens](https://www.youtube.com/watch?v=AlkDbnbv7dk&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=10) when you type a URL into your browser?
+
+4. Back of the envelope estimate - [video](https://www.youtube.com/watch?v=UC5xf8FbdJc) 
 
 <br>
 
