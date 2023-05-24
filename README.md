@@ -11,8 +11,8 @@ Implement your own datastructures in C#
 - [HashSet](datastructures/HashSet.cs)
 - [Hashtable](datastructures/HashTable.cs)
 - List
-- Stacks
-- Queues
+- [Stack](datastructures/Stack.cs)
+- Queue
 - Linked List
 - Tree
 - Graph
