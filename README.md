@@ -467,7 +467,10 @@ In this example, CQRS allows the system to optimize write operations (commands) 
 
 By decoupling the command and query responsibilities, CQRS enables scalability, flexibility, and improved performance in systems with distinct requirements for read and write operations. It allows for independent scaling of the command and query sides, as well as tailored optimization strategies for each aspect of the system.
 
-# Videos
+# Short Videos
+
+I recommend you get familiar with the basics, these are short concepts that you can go through quickly to get down the basics. There is also a [160-page-long pdf from Alex Xu](./files/System%20design%20the%20big%20archive%20-%20alex%20xu.pdf) which contains a lot of good information. Sign up for his newsletter and download the pdf for yourself.
+
 1. [8 design patterns](https://www.youtube.com/watch?v=tAuRQs_d9F8) every developer should know
 
 1. 10 [System design concepts](https://www.youtube.com/watch?v=i53Gi_K3o7I) explained consisely
@@ -480,9 +483,13 @@ By decoupling the command and query responsibilities, CQRS enables scalability, 
 
 4. Back of the envelope estimate - [video](https://www.youtube.com/watch?v=UC5xf8FbdJc) 
 
+5. What is [gRPC](https://www.youtube.com/watch?v=gnchfOojMk4) and why we don't use it everywhere?
 <br>
 
+6. History of [HTTP](https://www.youtube.com/watch?v=a-sBfyiXysI&t=0s) connections
 
+# Concrete questions and solutions
+[design xyz](https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview)
 
 ## Design tinyUrl / bit.ly
 Solution - [youtube](https://www.youtube.com/watch?v=tm-SWO9gUAU)
