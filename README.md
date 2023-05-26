@@ -500,7 +500,7 @@ Task:
 ## Object oriented design
 
 ### Design a reservation/payment system for a parking lot
-1. Lets ask some clarification questions:
+1. Lets ask some clarification questions and talk about scale:
 - Can we reserve a parking spot?
 - Do we want to get a recepit of some sort?
 - Can we pay for the spot in this service?
@@ -548,7 +548,8 @@ req: email, password, user_information
 <br>
 
 3. Design the database schema/tables
-For vehicle types> I would personally use enums in the code
+
+For vehicle types: I would personally use enums in the code
 and use string in the database. When serializing you can always
 make a enum/string converter, and there is usually a class like
 this so you can inherit from it.
@@ -586,7 +587,7 @@ __Spot__
 |end_time       | timestamp||
 |vehicle_type   | char||
 
-__Spot__
+__User__
 |column name|type|constraint|
 |-----------|----|----------|
 |id            | int| primary key|
@@ -607,6 +608,7 @@ __Vehicle__
 <br>
 
 4. Draw up the architecture
-No need to be distributed, the load isn't going to be huge.
+
+Note: No need to be distributed, the load isn't going to be huge.
 
 ![parking_lot](./files/parking_lot_pazment_reservation_system.png)
