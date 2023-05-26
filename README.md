@@ -491,7 +491,122 @@ I recommend you get familiar with the basics, these are short concepts that you 
 # Concrete questions and solutions
 [design xyz](https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview)
 
-## Design tinyUrl / bit.ly
+## System design
+### Design tinyUrl / bit.ly
 Solution - [youtube](https://www.youtube.com/watch?v=tm-SWO9gUAU)
 
 Task:
+
+## Object oriented design
+
+### Design a reservation/payment system for a parking lot
+1. Lets ask some clarification questions:
+- Can we reserve a parking spot?
+- Do we want to get a recepit of some sort?
+- Can we pay for the spot in this service?
+- what kind of vehicles can park here? Do the spots for these vehicles differ in size?
+- What is the pricing structure? do we have same/different prices for different spots?
+
+conclusion: high consistency is preferred. 
+
+2. Design the endpoints (request/response)
+
+Public facing endpoints
+
+__/reserve__ <br>
+req:    garage_id, start_time, end_time, Vehicle_type <br>
+res:   reservation_id, spot_id
+
+__/pay__ <br>
+req: reservation_id, user_id <br>
+Note: this is likely going to be a third party API: stripe etc
+
+__/cancel__ <br>
+req: reservation_id <br>
+res: 200 OK
+
+Private endpoints <br>
+__/calculate_price__ <br>
+req: reservation_id <br>
+res: price
+
+__/freespots__ <br>
+req: garage_id <br>
+res: [spot1, spot2]
+
+__/allocate_spot__ <br>
+
+req: garage_id, vehicle_type, time
+
+__/signup__
+__/login__
+__/logout__
+or
+SSO
+req: email, password, user_information
+
+<br>
+
+3. Design the database schema/tables
+For vehicle types> I would personally use enums in the code
+and use string in the database. When serializing you can always
+make a enum/string converter, and there is usually a class like
+this so you can inherit from it.
+
+__Reservation__
+|column name|type|constraint|
+|-----------|----|----------|
+|id             | int| primary key|
+|garage_id      | int| foreign key|
+|spot_id        | int| foreign key|
+|start_time     | timestamp||
+|end_time       | timestamp||
+|paid           | boolean||
+
+<br>
+
+__Garage__
+|column name|type|constraint|
+|-----------|----|----------|
+|id          | int| primary key|
+|zip_code    | int| |
+|rate_compact| decimal| |
+|rate_reg    | decimal| |
+|rate_large  | decimal| |
+
+<br>
+
+__Spot__
+|column name|type|constraint|
+|-----------|----|----------|
+|id             | int| primary key|
+|garage_id             | int| foreign key|
+|status         | char| |
+|start_time     | timestamp||
+|end_time       | timestamp||
+|vehicle_type   | char||
+
+__Spot__
+|column name|type|constraint|
+|-----------|----|----------|
+|id            | int| primary key|
+|garage_id     | int| foreign key|
+|email         | char| |
+|password      | char| |
+|first_name    | char| |
+|last_name     | char| |
+
+__Vehicle__
+|column name|type|constraint|
+|-----------|----|----------|
+|id            | int| primary key|
+|user_id       | int| foreign key|
+|license_plate | char| |
+|vehicle_type  | char| |
+
+<br>
+
+4. Draw up the architecture
+No need to be distributed, the load isn't going to be huge.
+
+![parking_lot](./files/parking_lot_pazment_reservation_system.png)
