@@ -7,11 +7,11 @@
 ## Datastructures and algorithms
 
 Implement your own datastructures in C#
-- [Enumerable](datastructures/Enumerable.cs)
-- [HashSet](datastructures/HashSet.cs)
-- [Hashtable](datastructures/HashTable.cs)
+- [Enumerable](code/Enumerable.cs)
+- [HashSet](code/HashSet.cs)
+- [Hashtable](code/HashTable.cs)
 - List
-- [Stack](datastructures/Stack.cs)
+- [Stack](code/Stack.cs)
 - Queue
 - Linked List
 - Tree
@@ -612,3 +612,26 @@ __Vehicle__
 Note: No need to be distributed, the load isn't going to be huge.
 
 ![parking_lot](./files/parking_lot_pazment_reservation_system.png)
+
+<br>
+
+### Deck of Cards
+
+[source](https://leetcode.com/discuss/interview-question/system-design/194663/design-a-class-that-represents-a-deck-of-cards)
+
+[solution](./code/DeckOfCards.cs)
+
+I have been asked this question in telephonic interview one of top notch company.
+Design a class that represents a deck of cards
+It should be used for game where multiple decks are involved
+suits - heart, club, diamond, spade
+
+    implement shuffle decks for the game
+    [1,2,3,4,5...]
+    [5,3,4,1,2...]
+    [4,2,5,1,3...]
+    implement draw a random card from deck
+
+(deal cards to X players)
+
+You can also continue implementing a `Hand` class as well to simulate players.

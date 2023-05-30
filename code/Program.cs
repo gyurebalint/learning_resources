@@ -64,3 +64,27 @@ Console.WriteLine(stk.Pop());           // return -1 --> Stack is empty return -
 Console.WriteLine("STACK END-----------------------------\n");
 
 Console.WriteLine("Datastructures OFF");
+
+#region object-oriented-design deck of cards
+DeckOfCards newDeck = new DeckOfCards();
+
+foreach (var card in newDeck.Cards)
+{
+    Console.WriteLine(card.ToString());
+}
+
+newDeck.DrawFromTop();
+
+foreach (var card in newDeck.Cards)
+{
+    Console.WriteLine(card.ToString());
+}
+
+newDeck.Shuffle();
+
+foreach (var card in newDeck.Cards)
+{
+    Console.WriteLine(card.ToString());
+}
+
+#endregion
