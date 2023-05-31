@@ -4,23 +4,23 @@
 - [Datastructures and algorithms](README.md#datastructures-and-algorithms)
 - [System design](README.md#system-design)
 
-## Datastructures and algorithms
-
-Implement your own datastructures in C#
+## Object oriented design excercises
 - [Enumerable](code/Enumerable.cs)
 - [HashSet](code/HashSet.cs)
 - [Hashtable](code/HashTable.cs)
 - List
 - [Stack](code/Stack.cs)
-- Queue
+- [Queue](code/Queue.cs)
 - Linked List
 - Tree
 - Graph
 - Heap
 
+- Deck of cards
+
+## Algorithms
 
 
-[bestresources](https://bestresources.co/resource/the-interview-study-guide-for-software-engineers-by-benjamin-rogojan--qvf019) - collected links about this DSA
 
 <details>
     <summary>Tree Traversal recursive - DFS</summary>
@@ -315,7 +315,7 @@ that the data that'll have to be moved is minimized.
 
                 In this image only k0 keys have to be moved
 
-## Problems it solves
+### Problems it solves
 
 Consistent hashing solves several problems in distributed systems:
 
