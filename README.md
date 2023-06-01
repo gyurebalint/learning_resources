@@ -1,8 +1,15 @@
 # learning_resources
 
 - [Backend Interview process & questions at a startup](C%23_Backend_interview_process.md)
-- [Datastructures and algorithms](README.md#datastructures-and-algorithms)
-- [System design](README.md#system-design)
+
+# About
+
+This doc should be an extension to the 
+[Sytem design primer](https://github.com/donnemartin/system-design-primer#study-guide) - start here
+
+Definately watch the first video CS 75 from Harvard, it is a good basis for future knowledge and it is presented incrementally as a story, so its built up. Pretty great stuff.
+
+Great resource - [github](https://github.com/systemdesignfightclub/SDFC/), [youtube](https://www.youtube.com/@SDFC/featured)
 
 ## Object oriented design excercises
 - [Enumerable](code/Enumerable.cs)
@@ -109,11 +116,7 @@ public class BinaryTree {
 
 <br>
 
-[Sytem design primer](https://github.com/donnemartin/system-design-primer#study-guide) - start here
 
-Definately watch the first video CS 75 from Harvard, it is a good basis for future knowledge and it is presented incrementally as a story, so its built up. Pretty great stuff.
-
-Great resource - [github](https://github.com/systemdesignfightclub/SDFC/), [youtube](https://www.youtube.com/@SDFC/featured)
 
 # Definitions
 
