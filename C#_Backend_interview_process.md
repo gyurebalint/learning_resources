@@ -480,6 +480,8 @@ __What does it decide whether a LINQ query turns into an Expression-Tree or an A
 
 __What happens to a query if it has been run on an SQL database?__
 
+<br>
+
 __What is the difference between running a query several times or turning it into a Stored Procedure?__
 
 Execution Efficiency: A stored procedure is precompiled and stored on the database server, which means that subsequent executions can be faster compared to running the same query multiple times. When a stored procedure is called, the database server can reuse the execution plan, resulting in improved performance.
@@ -522,6 +524,8 @@ Nonclustered indexes are generally smaller in size compared to clustered indexes
 While nonclustered indexes offer efficient read operations, data modifications (insert, update, delete) may be faster than with a clustered index, as they don't require reordering of the entire table.
 
 In summary, a clustered index determines the physical order of data in a table, whereas a nonclustered index is a separate structure that provides a quick way to find specific data without affecting the physical storage order. Clustered indexes are limited to one per table and are generally faster for retrieving data directly, while nonclustered indexes can be created on multiple columns and allow for faster searching but may require additional storage space.
+
+<br>
 
 __What kind of Isolation Levels have you used in a Transaction? Can you describe them?__
 Personal experience: I havent really needed to know all this, except for one time. We were normalizing some data and for this we needed to write a query, and we didnt really care is the data were a bit stale, we were just checking whether the query queries the necesseray type of data.
