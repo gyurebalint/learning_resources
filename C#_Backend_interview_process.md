@@ -384,7 +384,41 @@ Interface Segregation Principle (ISP): Clients should not be forced to depend on
 
 Dependency Inversion Principle (DIP): High-level modules should not depend on low-level modules, both should depend on abstractions.
 
+__What is Dependency Inversion Principle (DIP?__
+
+DIP stands for the Dependency Inversion Principle. It is one of the SOLID principles in object-oriented design. The DIP states two main principles:
+
+1. High-level modules/classes should not depend on low-level modules/classes. Both should depend on abstractions.
+
+2. Abstractions should not depend on details. Details should depend on abstractions.
+
+In simpler terms, the DIP promotes decoupling and abstraction in the design of software systems. It suggests that classes or modules should depend on abstract interfaces or contracts rather than concrete implementations. This allows for flexibility, modularity, and easier maintenance.
+
+By following the DIP, you achieve:
+
+__Loose coupling:__ By depending on abstractions, classes or modules are not tightly bound to specific implementations. This enhances flexibility and makes it easier to replace or extend components without affecting the overall system.    
+
+__Testability:__ With dependencies on abstractions, it becomes simpler to create mock or stub implementations for testing, as you can substitute concrete implementations with alternative versions during testing.
+
+__Modularity and reusability:__ The DIP encourages the creation of well-defined interfaces or contracts, which leads to more modular and reusable code. Different implementations can be easily swapped without affecting the consuming code.
+
+To adhere to the DIP, you can use techniques such as dependency injection, inversion of control containers, and interface-based programming. These techniques help invert the traditional flow of dependencies and ensure that high-level modules/classes depend on abstractions rather than concrete implementations.
+
 __Don’t you feel SRP and OCP are already contradicting each other?__
+
+The Single Responsibility Principle (SRP) and the Open-Closed Principle (OCP) are two fundamental principles in object-oriented design, and they are not inherently contradictory. Let's understand each principle:
+
+Single Responsibility Principle (SRP): The SRP states that a class should have only one reason to change. It suggests that a class should have a single responsibility or a single job, encapsulating a cohesive set of functionalities. By adhering to SRP, you aim to keep classes focused, maintainable, and easier to understand.
+
+Open-Closed Principle (OCP): The OCP states that software entities (classes, modules, functions) should be open for extension but closed for modification. It suggests designing systems in a way that allows new functionality to be added without modifying existing code. This is typically achieved through the use of abstractions, interfaces, inheritance, and polymorphism.
+
+While SRP and OCP address different aspects of software design, they are not contradictory but rather complementary principles. Here's how they can work together:
+
+SRP promotes dividing responsibilities into separate classes, each with a single responsibility. This helps maintain a clear separation of concerns and makes each class more focused and maintainable.
+
+OCP encourages designing classes and systems to be extensible without modifying existing code. By adhering to OCP, you can introduce new functionality by adding new classes or modules that adhere to existing interfaces or inherit from base classes, rather than modifying the existing code.
+
+<br>
 
 __What is covariance? How do you make a generic class covariant?__
 
