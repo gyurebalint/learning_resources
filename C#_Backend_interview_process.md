@@ -490,15 +490,38 @@ Maintainability and Versioning: Storing the query logic in a stored procedure al
 
 In summary, turning a query into a stored procedure offers advantages such as improved performance, code reusability, enhanced security, transactional control, and easier maintenance. However, running a query multiple times may be more appropriate for simple or ad hoc operations that don't require these additional features or when the query is not reused extensively.
 
+<br>
+
 __What is indexing?__
+
 Indexing is a technique used in databases to improve the efficiency of data retrieval operations, such as searching, sorting, and filtering. An index is a data structure that allows for faster access to specific rows in a database table based on the values of one or more columns.
 
-When an index is created on a column or set of columns, the database system organizes the values in a way that facilitates quicker data retrieval. It creates a separate data structure, often a B-tree or a hash table, which stores the indexed column values along with references to the corresponding table rows.
+When an index is created on a column or set of columns, the database system organizes the values in a way that facilitates quicker data retrieval. It creates a separate data structure, often a __B-tree or a hash table__, which stores the indexed column values along with references to the corresponding table rows.
 
 By using an index, the database can locate the desired data more efficiently. Instead of scanning the entire table, it can navigate the index structure to find the specific rows that match the query conditions. This reduces the number of disk I/O operations and improves query performance.
 
 In summary, indexing is a mechanism that enables faster data retrieval in databases by creating auxiliary data structures that allow for efficient lookup based on the indexed column values.
+
+<br>
+
 __What is a Clustered/Nonclustered Index? What’s the difference?__
+
+__Clustered Index:__
+A clustered index determines the physical order of data rows in a table.
+Each table can have only one clustered index because it dictates the physical storage of the data.
+By default, the primary key of a table is often used to define the clustered index.
+As the data is physically sorted based on the clustered index key, accessing data using the clustered index is generally faster than using a nonclustered index.
+Due to the physical sorting, updating or inserting data may be slower compared to a nonclustered index, as it may require reordering of the entire table.
+
+__Nonclustered Index:__
+A nonclustered index is a separate structure from the table that contains a copy of selected columns and a pointer to the actual table rows.
+A table can have multiple nonclustered indexes.
+Nonclustered indexes provide a quick way to find specific data based on the indexed columns, but they do not dictate the physical order of data.
+Unlike a clustered index, a nonclustered index does not affect the storage order of the table, and the data can be stored in any order.
+Nonclustered indexes are generally smaller in size compared to clustered indexes, as they only contain a copy of the indexed columns and pointers to the table rows.
+While nonclustered indexes offer efficient read operations, data modifications (insert, update, delete) may be faster than with a clustered index, as they don't require reordering of the entire table.
+
+In summary, a clustered index determines the physical order of data in a table, whereas a nonclustered index is a separate structure that provides a quick way to find specific data without affecting the physical storage order. Clustered indexes are limited to one per table and are generally faster for retrieving data directly, while nonclustered indexes can be created on multiple columns and allow for faster searching but may require additional storage space.
 
 __What kind of Isolation Levels have you used in a Transaction? Can you describe them?__
 Personal experience: I havent really needed to know all this, except for one time. We were normalizing some data and for this we needed to write a query, and we didnt really care is the data were a bit stale, we were just checking whether the query queries the necesseray type of data.
