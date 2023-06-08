@@ -384,7 +384,121 @@ __Don’t you feel SRP and OCP are already contradicting each other?__
 
 __What is covariance? How do you make a generic class covariant?__
 
+Covariance is a concept in type theory that relates to the compatibility and substitutability of types in a type hierarchy. It defines the relationship between types when considering subtyping and the direction of type conversions.
+
+In the context of programming languages, covariance typically applies to generic types or interfaces. It allows a derived (more specific) type to be used in place of a base (more general) type. This means that if a generic type parameter is covariant, you can assign an instance of a derived type to a variable of the base type.
+
+To make a generic class covariant, you need to declare the type parameter with the out keyword in languages that support covariance, such as C# or Kotlin. Here's an example in C#:
+
+```csharp
+
+public interface IAnimal
+{
+    void MakeSound();
+}
+
+public class Dog : IAnimal
+{
+    public void MakeSound()
+    {
+        Console.WriteLine("Woof!");
+    }
+}
+
+public class Cat : IAnimal
+{
+    public void MakeSound()
+    {
+        Console.WriteLine("Meow!");
+    }
+}
+
+public interface IContainer<out T>
+{
+    T GetItem();
+}
+
+public class AnimalContainer<T> : IContainer<T> where T : IAnimal
+{
+    private T item;
+
+    public AnimalContainer(T item)
+    {
+        this.item = item;
+    }
+
+    public T GetItem()
+    {
+        return item;
+    }
+}
+```
+
+In the example above, the `IContainer<out T>` interface is declared with the out keyword, indicating covariance. The `AnimalContainer<T>` class implements this interface, and the T type parameter is restricted to types that implement the IAnimal interface.
+
+With covariance, you can assign an instance of `AnimalContainer<Dog>` to a variable of type `IContainer<IAnimal>`, like so:
+
+```csharp
+IContainer<IAnimal> container = new AnimalContainer<Dog>(new Dog());
+```
+This assignment is possible because `AnimalContainer<Dog>` is considered a subtype of `IContainer<IAnimal>` due to covariance. It allows you to treat the more specific Dog instance as a more general IAnimal instance through the covariance relationship.
+
+Covariance is useful when you have scenarios where you want to work with a collection or container of objects of a more general type, but you also want to support using more specific derived types in the same container. It provides flexibility and polymorphism when dealing with generic types.
+
 __Can you give an example for contravariance?__
+
+Contravariance is another concept in type theory that relates to the compatibility and substitutability of types, but in the opposite direction compared to covariance. In contravariance, a base type can be used in place of a derived type. Let's consider an example:
+
+```csharp
+public class Animal
+{
+    public virtual void MakeSound()
+    {
+        Console.WriteLine("Animal sound");
+    }
+}
+
+public class Dog : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Woof!");
+    }
+}
+
+public class Cat : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Meow!");
+    }
+}
+
+public interface IAnimalHandler<in T>
+{
+    void Handle(T animal);
+}
+
+public class AnimalHandler<T> : IAnimalHandler<T> where T : Animal
+{
+    public void Handle(T animal)
+    {
+        animal.MakeSound();
+    }
+}
+```
+
+In this example, the `IAnimalHandler<in T>` interface is declared with the in keyword, indicating contravariance. The `AnimalHandler<T>` class implements this interface and provides a method to handle animals of type `T`.
+
+Now, you can assign an instance of `IAnimalHandler<Animal>` to a variable of type `IAnimalHandler<Dog>` because of contravariance:
+
+```csharp
+IAnimalHandler<Dog> dogHandler = new AnimalHandler<Animal>();
+```
+
+This assignment is possible because `AnimalHandler<Animal>` is considered a subtype of `IAnimalHandler<Dog>` due to contravariance. It allows you to treat the more general Animal handler as a valid handler for Dog objects through the contravariance relationship.
+
+Contravariance is useful when you need to work with types that consume objects or accept method arguments of a more general type. It provides flexibility when handling objects or implementing interfaces that expect base types, allowing for greater code reuse and polymorphism.
 
 __What do you think, how can we connect the idea of “composition over inheritance” with interface segregation?__
 
@@ -464,7 +578,27 @@ __According to what we talked about then, what kind of items do you find in the 
 
 __I see that you have been working with ASP.NET Core. What is the difference between UseMvc and AddMvc?__
 
+<br>
+
 __What is middleware? / Please give us some examples of usage!__
+
+In the context of web development or distributed systems, middleware refers to software that provides a set of common functions or services to applications. It typically handles tasks such as request/response processing, data transformation, authentication, authorization, logging, caching, and error handling.
+
+The key purpose of middleware is to abstract away the complexities of low-level communication protocols and provide a standardized way for components or systems to interact with each other. By utilizing middleware, developers can focus on implementing business logic and rely on the middleware to handle common cross-cutting concerns.
+
+Middleware can be categorized into different types based on its functionality, including:
+
+Web middleware: Used in web development frameworks, it handles tasks like routing, session management, input validation, and HTTP request/response processing.
+
+Integration middleware: Enables integration between disparate systems by providing connectors, adapters, and protocols for seamless communication and data exchange.
+
+Messaging middleware: Facilitates asynchronous communication and messaging patterns between applications or components using message queues, publish-subscribe models, or event-driven architectures.
+
+Security middleware: Deals with authentication, authorization, encryption, and other security-related concerns to ensure secure communication and data protection.
+
+Database middleware: Provides a layer of abstraction between applications and databases, offering features such as connection pooling, query optimization, and object-relational mapping (ORM).
+
+Middleware plays a crucial role in building scalable, modular, and maintainable software systems by promoting reusability, separation of concerns, and interoperability between different components. It simplifies development, enhances system flexibility, and enables the integration of heterogeneous systems.
 
 __Can you please describe the request pipeline for ASP.NET and the MVC endpoint?__
 
