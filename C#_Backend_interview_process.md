@@ -482,6 +482,13 @@ __What happens to a query if it has been run on an SQL database?__
 
 __What is the difference between running a query several times or turning it into a Stored Procedure?__
 
+Execution Efficiency: A stored procedure is precompiled and stored on the database server, which means that subsequent executions can be faster compared to running the same query multiple times. When a stored procedure is called, the database server can reuse the execution plan, resulting in improved performance.
+
+Code Reusability: By turning a query into a stored procedure, you encapsulate the logic within the database itself. This allows you to reuse the stored procedure across multiple applications or different parts of the same application, promoting code modularity and reducing duplication.
+
+Maintainability and Versioning: Storing the query logic in a stored procedure allows for centralized management and version control. Any changes or optimizations required in the query can be made directly to the stored procedure without modifying the application code. 
+
+In summary, turning a query into a stored procedure offers advantages such as improved performance, code reusability, enhanced security, transactional control, and easier maintenance. However, running a query multiple times may be more appropriate for simple or ad hoc operations that don't require these additional features or when the query is not reused extensively. The choice between the two approaches depends on the specific requirements of your application and the complexity of the operations involved.
 __What is a Clustered/Nonclustered Index? What’s the difference?__
 
 __What kind of Isolation Levels have you used in a Transaction? Can you describe them?__
