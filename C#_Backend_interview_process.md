@@ -488,7 +488,31 @@ Code Reusability: By turning a query into a stored procedure, you encapsulate th
 
 Maintainability and Versioning: Storing the query logic in a stored procedure allows for centralized management and version control. Any changes or optimizations required in the query can be made directly to the stored procedure without modifying the application code. 
 
-In summary, turning a query into a stored procedure offers advantages such as improved performance, code reusability, enhanced security, transactional control, and easier maintenance. However, running a query multiple times may be more appropriate for simple or ad hoc operations that don't require these additional features or when the query is not reused extensively. The choice between the two approaches depends on the specific requirements of your application and the complexity of the operations involved.
+In summary, turning a query into a stored procedure offers advantages such as improved performance, code reusability, enhanced security, transactional control, and easier maintenance. However, running a query multiple times may be more appropriate for simple or ad hoc operations that don't require these additional features or when the query is not reused extensively.
+
+__What is indexing?__
+Indexing is a technique used in databases to improve the efficiency of data retrieval operations, such as searching, sorting, and filtering. An index is a data structure that allows for faster access to specific rows in a database table based on the values of one or more columns.
+
+When an index is created on a column or set of columns, the database system organizes the values in a way that facilitates quicker data retrieval. It creates a separate data structure, often a B-tree or a hash table, which stores the indexed column values along with references to the corresponding table rows.
+
+By using an index, the database can locate the desired data more efficiently. Instead of scanning the entire table, it can navigate the index structure to find the specific rows that match the query conditions. This reduces the number of disk I/O operations and improves query performance.
+
+In summary, indexing is a mechanism that enables faster data retrieval in databases by creating auxiliary data structures that allow for efficient lookup based on the indexed column values.
 __What is a Clustered/Nonclustered Index? What’s the difference?__
 
 __What kind of Isolation Levels have you used in a Transaction? Can you describe them?__
+Personal experience: I havent really needed to know all this, except for one time. We were normalizing some data and for this we needed to write a query, and we didnt really care is the data were a bit stale, we were just checking whether the query queries the necesseray type of data.
+
+Isolation levels define the degree to which one transaction must be isolated from the effects of other concurrently executing transactions. Here are the four standard isolation levels defined by the ANSI/ISO SQL standard:
+
+__Read Uncommitted:__ This is the lowest level of isolation where transactions are not isolated from each other. A transaction can see uncommitted changes made by other concurrent transactions, which may result in dirty reads, non-repeatable reads, and phantom reads. It provides the highest level of concurrency but sacrifices data consistency.
+
+__Read Committed:__ In this isolation level, a transaction can only see committed data from other transactions. It prevents dirty reads by requiring that data be committed before it can be read, but it still allows non-repeatable reads and phantom reads. Read committed provides a balance between concurrency and consistency.
+
+__Repeatable Read:__ This isolation level ensures that a transaction sees a consistent snapshot of the data throughout its duration. Once a transaction reads a row, it guarantees that subsequent reads of the same row will yield the same result, even if other transactions modify or insert data. It prevents dirty reads and non-repeatable reads but still allows phantom reads.
+
+__Serializable:__ This is the highest level of isolation and provides the strictest guarantees. It ensures that transactions are completely isolated from each other, preventing dirty reads, non-repeatable reads, and phantom reads. Serializable achieves this by acquiring locks on the data that other transactions need to access, thereby reducing concurrency.
+
+*__A dirty read__ refers to a situation where a transaction reads uncommitted changes made by another concurrent transaction. In other words, it reads data that has not been permanently stored or may be rolled back later. This can lead to inconsistent or incorrect data being read, as the changes may be reversed or never finalized.*
+
+*__A phantom read__ occurs when a transaction retrieves a set of rows based on a certain condition, but when it repeats the same query within the same transaction, it finds additional rows that meet the condition due to another concurrent transaction inserting new rows. This phenomenon is known as a phantom read because it's as if new rows magically appear between two identical queries within the same transaction.*
