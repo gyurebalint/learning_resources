@@ -375,9 +375,13 @@ __What does SOLID stand for?__
 
 The SOLID principles include:
 Single Responsibility Principle (SRP): A class should have only one reason to change.
+
 Open/Closed Principle (OCP): A class should be open for extension but closed for modification.
+
 Liskov Substitution Principle (LSP): Subtypes should be replaceable by their base type.
+
 Interface Segregation Principle (ISP): Clients should not be forced to depend on interfaces they don't use.
+
 Dependency Inversion Principle (DIP): High-level modules should not depend on low-level modules, both should depend on abstractions.
 
 __Don’t you feel SRP and OCP are already contradicting each other?__
