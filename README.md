@@ -14,7 +14,10 @@ Great resource - [github](https://github.com/systemdesignfightclub/SDFC/), [yout
 ## Object oriented design excercises
 - [Enumerable](code/Enumerable.cs)
 - [HashSet](code/HashSet.cs)
-- [Hashtable](code/HashTable.cs)
+- Hashtable
+    - [my implementation](code/HashTable.cs)
+    - [microsoft implementation](https://referencesource.microsoft.com/#mscorlib/system/collections/generic/dictionary.cs,1dca11c8648f5d65,references)
+    - [explanation](https://dotnetos.org/blog/2022-03-28-dictionary-implementation/)
 - List
 - [Stack](code/Stack.cs)
 - [Queue](code/Queue.cs)
