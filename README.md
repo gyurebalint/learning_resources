@@ -689,6 +689,8 @@ Threads can directly access and modify the process's memory (Heap).
 Threads within the same process can communicate with each other more easily.
 Thread creation and context switching are generally faster than process creation and context switching.
 
+![processes & threads image](./files/processses_threads.png)
+
 Context switching refers to the process of saving the current state (context) of a thread or process and restoring the state of another thread or process, allowing it to resume execution. __Context switching is performed by the operating system's scheduler__, which allocates CPU time to different threads or processes.
 
 *To minimize context switching overhead, it's important to keep the number of context switches as low as possible. This can be achieved by: <br>
