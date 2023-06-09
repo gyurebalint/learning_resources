@@ -1,5 +1,7 @@
 # learning_resources
 
+- [About](#about)
+- [Datastructures & Algorithms](#datastructures--algorithms)
 - [Definitions](#definitions)
 - [Concepts](#concepts)
     - [CAP-theorem](#cap-theorem)
