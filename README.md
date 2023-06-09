@@ -12,7 +12,7 @@
     - [HDFS](#hadoop-file-system)
 - [Architectural patterns](#architectural-patterns)
 - [Interview excercises](#interview-excercises)
-- [Backend Interview process & questions at a startup](C%23_Backend_interview_process.md)
+- [Backend interview questions at a startup](C%23_Backend_interview_process.md)
 - [Operating system concepts](#operating-system-concepts)
     - [Processes & Multithreading](#procceses---multithreads)
 
@@ -667,7 +667,6 @@ You can also continue implementing a `Hand` class as well to simulate players.
 *Resources <br>
 Watch this first [Computerphile - threading](https://www.youtube.com/watch?v=7ENFeb-J75k) <br>
 What is the difference between a [process and a thread](https://www.youtube.com/watch?v=4rLW7zg21gI&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=8)? <br>*
-
 
 ### Definitions:<br>
 __Process:__ A process is an instance of a running program on a computer. It represents a self-contained unit of execution with its own memory space, resources, and state. Each process runs independently and is isolated from other processes.

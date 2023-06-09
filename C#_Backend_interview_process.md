@@ -4,12 +4,17 @@
 
 *A lot of the answers I generated with Chat-GPT (pronounce: chat gipitty) Not mindlessly might I add, but still use it with caution.*
 
-## Adaptive interview process
+- [Interview Process](#interview-process-adaptive)
+- [Warmup](#cracking-the-egg)
+- [Coding excercise](#show-us-what-you-got)
+- [Theory](#do-you-know)
+
+## Interview process (adaptive)
 The following interview questionnaire is created to adaptively assign questions for the candidate. The topics order is followed by the actual conversation, so this documentation has to be considered as a guide only. The interview consists of three parts:
-- __Cracking the Egg:__ First we aim to guide the candidate to a little more relaxed state as it’ll help during the whole process.
-- __Show us what you got!:__ In the second part we give the candidate one or two short algorithms to implement where we can track the
+1. __Cracking the Egg (warmup):__ First we aim to guide the candidate to a little more relaxed state as it’ll help during the whole process.
+2. __Show us what you got! (coding excerise) :__ In the second part we give the candidate one or two short algorithms to implement where we can track the
 thread of thought.
-- __Do you know…?:__ Lastly we bombard the candidate with several theoretical and lexical questions trying to find the boundaries in various topics.
+3. __Do you know…? (theory) :__ Lastly we bombard the candidate with several theoretical and lexical questions trying to find the boundaries in various topics.
 
 ## Cracking the Egg
 __Describe your typical work day!__
@@ -302,7 +307,7 @@ Example: Terraform
 Yes, IaC stands for Infrastructure as Code. It is a practice of using code to manage and provision infrastructure components and resources in a repeatable and automated way. The goal of IaC is to make the provisioning of infrastructure more efficient and less prone to errors than manual configuration and to allow for version control of infrastructure configurations.
 
 
-__Show us what you got!__
+## __Show us what you got!__
 We give the candidate an algorithm to implement. Usually asking the candidate to share screen on an online interview is a preferred way cause it gives a personal comfort with the already known IDE. At this point the personality of the candidate is shown. Giving them the fake opportunity to choosing from task difficulty is an interesting measure. There are some cases the candidate chooses to test the interviewer with asking for the most difficult task that is possible:
 
 1. Implement an F-bounded quantification! *HARD*
