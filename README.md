@@ -1,6 +1,20 @@
 # learning_resources
 
+- [Definitions](#definitions)
+- [Concepts](#concepts)
+    - [CAP-theorem](#cap-theorem)
+    - [Caching](#caching)
+    - [Consistent hashing](#consistent-hashing)
+    - [ACID](#acid-sql)
+    - [BASE](#base)
+- [Real world architectures](#real-world-architectures)
+    - [Map reduce](#mapreduce)
+    - [HDFS](#hadoop-file-system)
+- [Architectural patterns](#architectural-patterns)
+- [Interview excercises](#interview-excercises)
 - [Backend Interview process & questions at a startup](C%23_Backend_interview_process.md)
+- [Operating system concepts](#operating-system-concepts)
+    - [Processes & Multithreading](#procceses---multithreads)
 
 # About
 
@@ -11,7 +25,9 @@ Definately watch the first video CS 75 from Harvard, it is a good basis for futu
 
 Great resource - [github](https://github.com/systemdesignfightclub/SDFC/), [youtube](https://www.youtube.com/@SDFC/featured)
 
-## Object oriented design excercises
+# Datastructures & Algorithms
+
+## Datastructures
 - [Enumerable](code/Enumerable.cs)
 - [HashSet](code/HashSet.cs)
 - Hashtable
@@ -123,6 +139,30 @@ public class BinaryTree {
 
 # Definitions
 
+## Short Videos
+
+I recommend you get familiar with the basics, these are short concepts that you can go through quickly to get down the basics. There is also a [160-page-long pdf from Alex Xu](./files/System%20design%20the%20big%20archive%20-%20alex%20xu.pdf) which contains a lot of good information. Sign up for his newsletter and download the pdf for yourself.
+
+1. [8 design patterns](https://www.youtube.com/watch?v=tAuRQs_d9F8) every developer should know
+
+1. 10 [System design concepts](https://www.youtube.com/watch?v=i53Gi_K3o7I) explained consisely
+
+1. What is the difference between a [process and a thread](https://www.youtube.com/watch?v=4rLW7zg21gI&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=8)? <br>
+[Computerphile - threading](https://www.youtube.com/watch?v=7ENFeb-J75k)
+
+2. What is [HTTPS and TLS](https://www.youtube.com/watch?v=j9QmMEWmcfo&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=9)?
+
+3. [What happens](https://www.youtube.com/watch?v=AlkDbnbv7dk&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=10) when you type a URL into your browser?
+
+4. Back of the envelope estimate - [video](https://www.youtube.com/watch?v=UC5xf8FbdJc) 
+
+5. What is [gRPC](https://www.youtube.com/watch?v=gnchfOojMk4) and why we don't use it everywhere?
+<br>
+
+6. History of [HTTP](https://www.youtube.com/watch?v=a-sBfyiXysI&t=0s) connections
+
+<br>
+
 __Consistency:__ Consistency is the degree to which data is the same across different parts of a system. In a consistent system, all nodes have the same data at the same time. Consistency can be achieved by using distributed databases, implementing consensus algorithms, and using version control. For example, a consistent messaging system should ensure that all users see the same messages in the same order, regardless of which server they are connected to.
 
 __Availability:__ Availability is the measure of how often a system is accessible and usable. High availability means that a system is available most of the time, with minimal downtime. For example, a highly available cloud storage service should be accessible to users at all times, even if some servers fail or undergo maintenance.
@@ -141,7 +181,8 @@ __Throughput:__ Throughput is the number of requests a system can handle in a gi
 
 # Concepts 
 
-## CAP-theorem (Consistency, Availability, Partition tolerance)
+## CAP-theorem 
+### (Consistency, Availability, Partition tolerance)
 - Centralized system: you don't have to choose between __Availability__ and __Consistency__ because there is not network partition.
 - Distributed system: Since partition is guaranteed you always have to choose between __Availability__ and __Consistency__. 
 
@@ -395,7 +436,22 @@ BASE provides an alternative approach to system design, trading off strict consi
 [difference](https://www.youtube.com/watch?v=I3Mlt7GCeIU) - 
 [event streaming](https://www.youtube.com/watch?v=7Bh10yAycws)
 
+# Architectural patterns
 
+## __CQRS (Command Query Responsibility Segregation)__ 
+
+CQRS is a software architectural pattern that separates the responsibilities of handling commands (write operations that modify the system state) and queries (read operations that retrieve data). It recognizes that the requirements for reading data from a system are often different from those for modifying data, and tailors the design of each aspect accordingly.
+
+In a CQRS architecture, the system is divided into two parts:
+
+- __Command Side:__
+The command side of the system handles operations that modify the state. It accepts commands or requests for changes, processes them, and updates the state accordingly. The command side is responsible for enforcing business rules, validating input, and persisting the changes.
+- __Query Side:__
+The query side of the system focuses on retrieving data and serving read requests. It maintains a separate read model optimized for querying and fetching data. The read model is denormalized and structured to efficiently serve specific queries, ensuring high performance for read operations.
+
+In this example, CQRS allows the system to optimize write operations (commands) separately from read operations (queries). The command side handles the complex business logic of fund transfers, ensuring data integrity and enforcing business rules. The query side provides fast and efficient read access to the denormalized account balance data, enhancing the performance and scalability of the read operations.
+
+By decoupling the command and query responsibilities, CQRS enables scalability, flexibility, and improved performance in systems with distinct requirements for read and write operations. It allows for independent scaling of the command and query sides, as well as tailored optimization strategies for each aspect of the system.
 
 # Real world architectures
 
@@ -456,45 +512,7 @@ https://blog.acolyer.org/2015/05/26/pregel-a-system-for-large-scale-graph-proces
 
 https://people.apache.org/~edwardyoon/documents/pregel.pdf
 
-# Architectural patterns
-
-## __CQRS (Command Query Responsibility Segregation)__ 
-
-CQRS is a software architectural pattern that separates the responsibilities of handling commands (write operations that modify the system state) and queries (read operations that retrieve data). It recognizes that the requirements for reading data from a system are often different from those for modifying data, and tailors the design of each aspect accordingly.
-
-In a CQRS architecture, the system is divided into two parts:
-
-- __Command Side:__
-The command side of the system handles operations that modify the state. It accepts commands or requests for changes, processes them, and updates the state accordingly. The command side is responsible for enforcing business rules, validating input, and persisting the changes.
-- __Query Side:__
-The query side of the system focuses on retrieving data and serving read requests. It maintains a separate read model optimized for querying and fetching data. The read model is denormalized and structured to efficiently serve specific queries, ensuring high performance for read operations.
-
-In this example, CQRS allows the system to optimize write operations (commands) separately from read operations (queries). The command side handles the complex business logic of fund transfers, ensuring data integrity and enforcing business rules. The query side provides fast and efficient read access to the denormalized account balance data, enhancing the performance and scalability of the read operations.
-
-By decoupling the command and query responsibilities, CQRS enables scalability, flexibility, and improved performance in systems with distinct requirements for read and write operations. It allows for independent scaling of the command and query sides, as well as tailored optimization strategies for each aspect of the system.
-
-# Short Videos
-
-I recommend you get familiar with the basics, these are short concepts that you can go through quickly to get down the basics. There is also a [160-page-long pdf from Alex Xu](./files/System%20design%20the%20big%20archive%20-%20alex%20xu.pdf) which contains a lot of good information. Sign up for his newsletter and download the pdf for yourself.
-
-1. [8 design patterns](https://www.youtube.com/watch?v=tAuRQs_d9F8) every developer should know
-
-1. 10 [System design concepts](https://www.youtube.com/watch?v=i53Gi_K3o7I) explained consisely
-
-1. What is the difference between a [process and a thread](https://www.youtube.com/watch?v=4rLW7zg21gI&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=8)?
-
-2. What is [HTTPS and TLS](https://www.youtube.com/watch?v=j9QmMEWmcfo&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=9)?
-
-3. [What happens](https://www.youtube.com/watch?v=AlkDbnbv7dk&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=10) when you type a URL into your browser?
-
-4. Back of the envelope estimate - [video](https://www.youtube.com/watch?v=UC5xf8FbdJc) 
-
-5. What is [gRPC](https://www.youtube.com/watch?v=gnchfOojMk4) and why we don't use it everywhere?
-<br>
-
-6. History of [HTTP](https://www.youtube.com/watch?v=a-sBfyiXysI&t=0s) connections
-
-# Concrete questions and solutions
+# Interview excercises
 [design xyz](https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview)
 
 ## System design
@@ -641,3 +659,43 @@ suits - heart, club, diamond, spade
 (deal cards to X players)
 
 You can also continue implementing a `Hand` class as well to simulate players.
+
+# Operating system concepts
+
+## Procceses - Multithreads
+
+*Resources <br>
+Watch this first [Computerphile - threading](https://www.youtube.com/watch?v=7ENFeb-J75k) <br>
+What is the difference between a [process and a thread](https://www.youtube.com/watch?v=4rLW7zg21gI&list=PLCRMIe5FDPseVvwzRiCQBmNOVUIZSSkP8&index=8)? <br>*
+
+
+### Definitions:<br>
+__Process:__ A process is an instance of a running program on a computer. It represents a self-contained unit of execution with its own memory space, resources, and state. Each process runs independently and is isolated from other processes.
+
+__Thread:__ A thread is a unit of execution within a process. It represents a single sequence of instructions that can be scheduled and executed by the operating system's thread scheduler. Multiple threads can exist within a single process, and they share the process's resources, such as memory and file handles.
+
+Processes and threads have the following characteristics and share certain aspects:
+
+Processes:
+Each process has its own memory space, including code, data, and stack.
+Processes are isolated from one another and cannot directly access each other's memory.
+Inter-process communication mechanisms, such as pipes, sockets, or shared memory, are used for communication between processes.
+Processes have their own process identifier (PID) to uniquely identify them.
+
+Threads:
+Threads within a process share the same memory space (Heap).
+Each thread has its own Stack memory.
+Threads can directly access and modify the process's memory (Heap).
+Threads within the same process can communicate with each other more easily.
+Thread creation and context switching are generally faster than process creation and context switching.
+
+Context switching refers to the process of saving the current state (context) of a thread or process and restoring the state of another thread or process, allowing it to resume execution. __Context switching is performed by the operating system's scheduler__, which allocates CPU time to different threads or processes.
+
+*To minimize context switching overhead, it's important to keep the number of context switches as low as possible. This can be achieved by: <br>
+Optimizing algorithms and code to reduce the need for frequent context switches.
+Efficiently utilizing threads and processes, considering the available resources and workload characteristics.
+Using synchronization mechanisms, such as locks or semaphores, to minimize unnecessary context switches caused by race conditions or resource conflicts.*
+
+Now, let's talk about goroutines. Goroutines are a concept specific to the Go programming language. They are lightweight, independently executing functions or methods that run concurrently within a Go program. Goroutines are managed by the Go runtime and are multiplexed onto a smaller number of operating system threads. Goroutines allow efficient concurrent programming without the overhead of heavyweight operating system threads. The Go runtime automatically handles goroutine scheduling and context switching, making it easier to write concurrent programs in Go.
+
+In summary, processes are instances of running programs, while threads are units of execution within a process. Processes are isolated from each other, while threads share the same memory space within a process. Context switching is the mechanism of switching between threads or processes. Minimizing context switching overhead involves optimizing code, resource utilization, and using synchronization mechanisms. Goroutines are lightweight concurrent units in the Go programming language that provide efficient and convenient concurrent programming capabilities.
