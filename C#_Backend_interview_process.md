@@ -720,3 +720,22 @@ __Serializable:__ This is the highest level of isolation and provides the strict
 *__A dirty read__ refers to a situation where a transaction reads uncommitted changes made by another concurrent transaction. In other words, it reads data that has not been permanently stored or may be rolled back later. This can lead to inconsistent or incorrect data being read, as the changes may be reversed or never finalized.*
 
 *__A phantom read__ occurs when a transaction retrieves a set of rows based on a certain condition, but when it repeats the same query within the same transaction, it finds additional rows that meet the condition due to another concurrent transaction inserting new rows. This phenomenon is known as a phantom read because it's as if new rows magically appear between two identical queries within the same transaction.*
+
+![database isolation levels](./files/database-isolation-levels.png)
+
+The isolation is guaranteed by MVCC (Multi-Version Consistency
+Control) and locks.<br>
+The diagram above takes Repeatable Read as an example to
+demonstrate how MVCC works:
+
+There are two hidden columns for each row: 
+- transaction_id and roll_pointer. 
+
+When `transaction A` starts a new Read View with `transaction_id=201` is created. Shortly afterward, `transaction B` starts, and a new Read View with `transaction_id=202` is created.
+
+Now `transaction A` modifies the balance to `200`, a new row of the log is created, and the `roll_pointer` points to the old row. Before `transaction A` commits, `transaction B` reads the balance data. `Transaction B` finds that `transaction_id 201` is not committed, it reads the next committed record(`transaction_id=200`).
+
+Even when `transaction A` commits, `transaction B` still reads data based on the Read View created when `transaction B` starts. So `transaction B` always reads the data with `balance=100`.
+
+Over to you: have you seen isolation levels used in the wrong way?
+Did it cause serious outages?

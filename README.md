@@ -472,6 +472,7 @@ By decoupling the command and query responsibilities, CQRS enables scalability, 
 
 <br>
 
+
 ## Hadoop file system 
 
 [article](https://hadoop.apache.org/docs/r1.2.1/hdfs_design.pdf) - a very good article by Apache
