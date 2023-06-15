@@ -41,7 +41,7 @@ Great resource - [github](https://github.com/systemdesignfightclub/SDFC/), [yout
 - List
 - [Stack](code/Stack.cs)
 - [Queue](code/Queue.cs)
-- Linked List
+- Linked List - [video](https://www.youtube.com/watch?v=_jQhALI4ujg)
 - Tree
 - Graph
 - Heap
