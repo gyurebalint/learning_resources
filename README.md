@@ -20,6 +20,8 @@
 
 # About
 
+Hopefully, it helps you understand and visualise software engineer concepts, helps you prepare for interviews and locate great resources.
+
 This doc should be an extension to the 
 [Sytem design primer](https://github.com/donnemartin/system-design-primer#study-guide) - start here
 
@@ -507,13 +509,7 @@ node, two thirds of replicas are on one rack, and the other third are evenly dis
             |             |                 |  BLOCK_ID3  |
             ---------------                 ---------------
 
-## DynamoDb
 
-## Pregel (graph, page ranking)
-
-https://blog.acolyer.org/2015/05/26/pregel-a-system-for-large-scale-graph-processing/
-
-https://people.apache.org/~edwardyoon/documents/pregel.pdf
 
 # Interview excercises
 [design xyz](https://tianpan.co/notes/2016-02-13-crack-the-system-design-interview)
@@ -703,3 +699,8 @@ Using synchronization mechanisms, such as locks or semaphores, to minimize unnec
 Now, let's talk about goroutines. Goroutines are a concept specific to the Go programming language. They are lightweight, independently executing functions or methods that run concurrently within a Go program. Goroutines are managed by the Go runtime and are multiplexed onto a smaller number of operating system threads. Goroutines allow efficient concurrent programming without the overhead of heavyweight operating system threads. The Go runtime automatically handles goroutine scheduling and context switching, making it easier to write concurrent programs in Go.
 
 In summary, processes are instances of running programs, while threads are units of execution within a process. Processes are isolated from each other, while threads share the same memory space within a process. Context switching is the mechanism of switching between threads or processes. Minimizing context switching overhead involves optimizing code, resource utilization, and using synchronization mechanisms. Goroutines are lightweight concurrent units in the Go programming language that provide efficient and convenient concurrent programming capabilities.
+
+## Memory - RAM
+*Resources <br>
+How does computer memory works - [video](https://www.youtube.com/watch?v=XETZoRYdtkw) <br>
+Apple are implementing Virtual Memory, what is virtual memory - [video](https://www.youtube.com/watch?v=5lFnKYCZT5o)*

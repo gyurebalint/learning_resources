@@ -716,7 +716,7 @@ In this extended example, the HomeController includes a dummy UserService class 
 
 <br>
 
-__In your CV it says you have been working with databases. How does an API connect to a database?__
+### __In your CV it says you have been working with databases. How does an API connect to a database?__
 
 In .NET Core, you can connect to a database using the Entity Framework Core (EF Core), which is an Object-Relational Mapping (ORM) framework. EF Core provides a high-level abstraction over the database access, allowing you to interact with the database using object-oriented code instead of writing raw SQL queries. Here's an example of how it works:
 
