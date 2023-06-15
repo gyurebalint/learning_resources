@@ -17,21 +17,22 @@ thread of thought.
 3. __Do you know…? (theory) :__ Lastly we bombard the candidate with several theoretical and lexical questions trying to find the boundaries in various topics.
 
 ## Cracking the Egg
-__Describe your typical work day!__
+### __Describe your typical work day!__
 
-__If you’d have infinite resources, how would you improve your last assignment tasks?__
+### __If you’d have infinite resources, how would you improve your last assignment tasks?__
 
-__What do you consider your biggest achievement?__
+### __What do you consider your biggest achievement?__
 
-__How do you inform yourself about the latest technologies? / How do you educate yourself?__
+### __How do you inform yourself about the latest technologies? / How do you educate yourself?__
 
-__How would you describe the SDLC you have been working with? What would be the ideal one?__
+### __How would you describe the SDLC you have been working with? What would be the ideal one?__
 
-__Which methodology have you been working with?__
+
+### __Which methodology have you been working with?__
 
 <br>
 
-__What are the main points of a Waterfall methodology?__
+### __What are the main points of a Waterfall methodology?__
 
 Waterfall methodology is often used for large, well-defined projcts with a clear set of requirements. The process is characterized by its linear, sequential flow, with each stage building upon the previous one, and with little or no overlap between stages. The key advantage of Waterfall is its predictability, making it ideal for projects where the requirements are well understood and unlikely to change.
 - Requirements gathering and analysis: This stage involves gathering the requirements for the software from stakeholders and analyzing the information to determine what the software needs to do.
@@ -41,14 +42,14 @@ Testing: This stage involves testing the software to ensure it meets the require
 - Deployment: This stage involves deploying the software to a production environment, where it can be used by end-users.
 Maintenance: This stage involves maintaining and updating the software to fix bugs and add new features.
 
-__What does Agile mean to you?__
+### __What does Agile mean to you?__
 
 Agile emphasizes the flexibility and adaptability of software development processes, allowing teams to respond quickly to changes in requirements or market conditions. Agile is a response to the rigid, prescriptive approaches of traditional software development methodologies, such as Waterfall. It is based on the Agile Manifesto, which outlines a set of principles for software development that prioritize delivering value to customers and embracing change. Agile approaches include Scrum, Kanban, and Lean. Agile methodologies are used to build software in an iterative, incremental manner, with a focus on continuous improvement and collaboration between team members.
 
-__Which Agile methodology have you met?__
+### __Which Agile methodology have you met?__
 Kanban, Scrum
 
-__How would you organise a KANBAN/SCRUM development?__
+### __How would you organise a KANBAN/SCRUM development?__
 
 Scrum
 - Form a cross-functional team: Assemble a team with all the skills needed to complete a project, including developers, designers, and testers.
@@ -67,9 +68,9 @@ Kanban
 
 
 __What kind of version control systems have you been working with?__
-GIT
+### GIT
 
-__What is the difference between Git and TFS?__
+### __What is the difference between Git and TFS?__
 
 Git is a version control technology that enables you to version your codebases with the opportunity to revert, merge code.
 TFS stands for Team Foundation Server is a code repository with version control and the ability to track code changes, an integrated CI/CD tool, that builds and deploys your code and provides project management tools to be able to manage any software development task.
@@ -81,7 +82,7 @@ TFS stands for Team Foundation Server is a code repository with version control 
 <br>
 
 
-__What is the difference between a Merge and a Rebase?__
+### __What is the difference between a Merge and a Rebase?__
 
 
 Merge
@@ -96,7 +97,7 @@ In general, a Merge is used for preserving history and collaboration, while a Re
 
 <br>
 
-__While you are working on the code, how do you protect the already implemented functionalities?__
+### __While you are working on the code, how do you protect the already implemented functionalities?__
 
 Code version control
 - Use version control systems like Git to keep track of changes in the codebase, maintain a history of modifications, and easily revert to previous versions of the code.
@@ -113,24 +114,24 @@ Automated testing
 Continuous Integration and Continuous Deployment (CI/CD)
 - Implement a CI/CD pipeline to automatically build, test, and deploy code changes. This helps to catch bugs and ensure that new code changes do not break existing functionalities.
 
-__What does a “unit“ mean for you, when you are working with Unit Tests?__
+### __What does a “unit“ mean for you, when you are working with Unit Tests?__
 
 Defining a “unit” is a collective decision for the people, company or project owners which represents the smallest testable code section that needs to be tested. Some companies don’t write unit tests for every class/every function but only a larger piece of code. It can vary due to competency factors as well, a junior is more likely to test the smaller code section to make sure it works.
 
-__Which Unit Test frameworks do you have experience with?__
+### __Which Unit Test frameworks do you have experience with?__
 
 XUnit - Home > xUnit.net
 
-__How do you handle dependencies, when you’d like to isolate a logic?__
+### __How do you handle dependencies, when you’d like to isolate a logic?__
 
 I don’t know
 Using interfaces and Dependency injection
 
-__What kind of mocking frameworks are you familiar with?__
+### __What kind of mocking frameworks are you familiar with?__
 
 Moq
 
-__What is the main difference between a mock and a stub?__
+### __What is the main difference between a mock and a stub?__
 
 __Stub:__ 
 I believe the biggest distinction is that a stub you have already written with predetermined behavior. So you would have a class that implements the dependency (abstract class or interface most likely) you are faking for testing purposes and the methods would just be stubbed out with set responses. They would not do anything fancy and you would have already written the stubbed code for it outside of your test.
@@ -182,13 +183,13 @@ namespace MoqExample
 
 __Similarity between Mocks and Stubs:__ The purpose of both is to eliminate testing all the dependencies of a class or function so your tests are more focused and simpler in what they are trying to prove.
 
-__Have you heard the work “mockicist” before?__
+### __Have you heard the work “mockicist” before?__
 
-__How would you interpret TDD/BDD? What are the differences?__
+### __How would you interpret TDD/BDD? What are the differences?__
 
-__What does FIRST mean? / What is a “good test“ for you?__
+### __What does FIRST mean? / What is a “good test“ for you?__
 
-__What are the steps of a general testing? / Have you heard about the AAA testing? What does it mean?__
+### __What are the steps of a general testing? / Have you heard about the AAA testing? What does it mean?__
 
 ```csharp
 // Arrange
@@ -202,30 +203,30 @@ client.Count();
 mock.Assert.Equal(15);
 ```
 
-__What is the test pyramid?__
+### __What is the test pyramid?__
 
 The idea behind the Test Pyramid is that a well-structured test suite should have more unit tests, which are fast and inexpensive, than integration tests or end-to-end tests, which are slower and more complex. This approach helps to ensure that most of the bugs are caught early in the development process, reducing the cost of fixing them later in the development cycle.
 
-__What do you mean about necessary coverage? What do we cover?__
+### __What do you mean about necessary coverage? What do we cover?__
 
-__What scenarios would you create tests for?__
+### __What scenarios would you create tests for?__
 
-__What is the difference between an Edge Case and a Corner Case?__
+### __What is the difference between an Edge Case and a Corner Case?__
 
 __Edge Case:__ An edge case is a test case that tests the boundaries or limits of the system. Edge cases usually occur at the extremes of the input or output range and are used to verify that the system can handle unexpected inputs or outputs. For example, if the system is designed to handle a range of 1 to 10, an edge case test would be to check the system's behaviour when inputting 0 (the lower limit) or 11 (the upper limit).
 __Corner Case:__ A corner case is a more severe version of an edge case, and it refers to a test case that tests the system's behaviour when multiple boundaries or limits are hit simultaneously. Corner cases are used to verify the system's behaviour when the input or output is at its maximum or minimum and the system's normal behaviour is altered. For example, if the system is designed to handle a range of 1 to 10, a corner case test would be to check the system's behaviour when inputting 0 and 11 at the same time.
 
-__How do you test for side effects?__
+### __How do you test for side effects?__
 
-__What kind of non-functional tests are you familiar with?__
+### __What kind of non-functional tests are you familiar with?__
 
-__Have you been working with any CI/CD systems?__
+### __Have you been working with any CI/CD systems?__
 
 Azure Devops, Betsson’s BeGo (sucked)
 
 TeamCity, Jenkins
 
-__What are the general steps of a CI pipeline?__
+### __What are the general steps of a CI pipeline?__
 
 - Code Commit: Developers check-in their code changes into a version control system like Git, which triggers the CI pipeline.
 - Build: The CI system retrieves the latest code changes and builds the code into an executable form.
@@ -235,19 +236,19 @@ __What are the general steps of a CI pipeline?__
 - Monitoring: The CI system continuously monitors the deployed code for any issues and provides notifications in case of failures or errors.
 The goal of a CI pipeline is to catch and fix integration issues as early as possible in the development process, reducing the cost of fixing bugs later on and increasing the speed of delivering new features to customers. By automating the process, CI pipelines help to reduce the manual effort required to build and test code, freeing up developers to focus on other tasks.
 
-__What is the difference between Continuous Integration/Deployment/Delivery?__
+### __What is the difference between Continuous Integration/Deployment/Delivery?__
 
-__Have you created a pipeline from scratch in the past?__
+### __Have you created a pipeline from scratch in the past?__
 
 No. I Used Azure Devops and used Github Actions. 
 
-__Can you tell us any gotchas that you have encountered?__
+### __Can you tell us any gotchas that you have encountered?__
 
 The servers that run your tests might have a different runtime than your development environment. This comes up when you are dealing with stuff that could be handled differently on different platforms. For example Linux deals with ISO country codes differently than windows. 
 The `RegionInfo` class’s  properties return different values in case of windows/linux
 
 
-__What kind of Non-Functional Requirements have you considered during your past assignments?__
+### __What kind of Non-Functional Requirements have you considered during your past assignments?__
 
 A non-functional requirement is a requirement that specifies constraints or conditions on the system being developed, rather than specific behaviours. They describe how the system should perform, rather than what it should do. 
 Some examples of non-functional requirements include:
@@ -260,15 +261,15 @@ Maintainability
 Availability
 These requirements help ensure that the system is delivered with the desired level of quality, reliability, and maintainability.
 
-__Which are the most important for you? Why?__
+### __Which are the most important for you? Why?__
 
 For me maintainability is the most important because if it’s done right not only I will have an easier time maintaining the next person after me, this ensures to keep the technical debt to a minimum, this would have a snowball effect.
 
-__I see you have been working in a cloud environment. What kind of components have you used?__
+### __I see you have been working in a cloud environment. What kind of components have you used?__
 
 ResourceGroups, Subscriptions, Service Bus namespace(queues, topics, subscriptions), App service, SQL
 
-__What is IaaS, PaaS, SaaS and what is the difference between them?__
+### __What is IaaS, PaaS, SaaS and what is the difference between them?__
 
 IaaS (Infrastructure as a Service): 
 IaaS provides customers with access to virtualized computing infrastructure, including servers, storage, and networking. Customers have complete control over the infrastructure and can use it to host and manage their own applications.
@@ -282,7 +283,7 @@ SaaS (Software as a Service)
 SaaS provides access to a fully-featured software application over the internet, without the need to install or manage any software or hardware. SaaS is delivered on a subscription basis and can be accessed from anywhere with an internet connection
 Example: Salesforce, Google Apps, Microsoft Office 365, Dropbox, Slack
 
-__What more functionality a Service Bus provides us than a single Queue service?__
+### __What more functionality a Service Bus provides us than a single Queue service?__
 
 A Service Bus provides more functionality compared to a single queue service by offering additional features and capabilities that can enhance the reliability and scalability of communication between systems. Some of the key differences between a Service Bus and a single queue service include:
 __Routing and filtering:__ Service Buses provide more advanced routing and filtering capabilities compared to a single queue service. This allows for more fine-grained control over message flow and processing.
@@ -291,18 +292,18 @@ __Transactions:__ Service Buses provide transaction support for message processi
 __Batching:__ Service Buses allow for batching of messages, enabling systems to process multiple message
 
 
-__Do you have experience in Virtualization technologies?__
+### __Do you have experience in Virtualization technologies?__
 
-__Please describe as simply as you can, how does Docker work?__
+### __Please describe as simply as you can, how does Docker work?__
 
 Docker is a platform that enables users to create, deploy, and run applications in containers. Containers are isolated environments that package an application and its dependencies together, allowing for consistent and efficient deployment across different environments. Docker provides a way to build, package, and distribute these containers, as well as manage their runtime behaviour. The Docker engine, which runs on a host operating system, provides the container runtime and manages the containers. This enables applications to run in a consistent and isolated environment, while leveraging the host's underlying resources. Docker images, which are snapshots of the containers, can be stored and distributed through a centralised registry, making it easier to share and reuse these environments.
 
-__Extra question: What are volumes?__
+### __Extra question: What are volumes?__
 In the Docker world, a volume is a way to persist data generated by and used by Docker containers. Volumes are defined as separate entities from the containers and they can be shared between multiple containers, allowing data to persist even if the original container is deleted or recreated. Volumes can be stored on the host file system or on a networked file system and they provide a mechanism for managing and backing up data used by Docker containers. Volumes are useful for storing data that should persist even if the container is removed, such as logs, configuration files, and data generated by applications.
 Have you been working with any Container Orchestration Platforms?
 I only know and tested Docker Compose and kubernetes.
 
-__Do you know what IaC is? Have you been working in such an environment?__
+### __Do you know what IaC is? Have you been working in such an environment?__
 Example: Terraform
 Yes, IaC stands for Infrastructure as Code. It is a practice of using code to manage and provision infrastructure components and resources in a repeatable and automated way. The goal of IaC is to make the provisioning of infrastructure more efficient and less prone to errors than manual configuration and to allow for version control of infrastructure configurations.
 
@@ -338,7 +339,7 @@ It is advised to ask the candidate to trying out the code snippet created like w
 which should return an array with two elements: 6 and 8
 
 ## Do you know…?
-__What is the difference between an Abstract class and an Interface?__
+### __What is the difference between an Abstract class and an Interface?__
 
 Abstract class 
 is a partially defined class that contains one or more abstract methods (i.e. methods without a body) and can contain both abstract and non-abstract methods. An abstract class is a blueprint for other classes and it can be extended to create concrete (i.e. non-abstract) classes.
@@ -353,11 +354,11 @@ An abstract class can have instance variables and constructors, while an interfa
 An abstract class is used to define a blueprint for subclasses, while an interface is used to define a contract for classes to implement.
 Multiple inheritance is possible with interfaces, but not with abstract classes.
 
-__Is there multiple inheritance in C#?__
+### __Is there multiple inheritance in C#?__
 
 Nope
 
-__Can two interfaces have the same method signature?__
+### __Can two interfaces have the same method signature?__
 
 Yes. 
 How would you deal with the diamond problem -> Explicit implementation
