@@ -363,20 +363,26 @@ Yes.
 How would you deal with the diamond problem -> Explicit implementation
 https://learn.microsoft.com/en-us/dotnet/csharp/programming-guide/interfaces/explicit-interface-implementation
 
-__What is part of a method signature? / What’s not?__
+### __What is part of a method signature? / What’s not?__
 
 Return type, method name, method’s arguments. 
 Not: the body/implementation of the method
 
-__How the situation changed with C# 8.0?__
+<br>
 
-__Is there any general principle set that you follow when constructing a class?__
+### __How the situation changed with C# 8.0?__
+
+<br>
+
+### __Is there any general principle set that you follow when constructing a class?__
 
 Yes, there are general principles that can be followed when constructing a class. These include the SOLID principles, which are a set of design principles for writing maintainable and scalable software. 
 
 Additionally, classes should be designed to be easy to understand, maintain, and extend. This can be achieved by keeping the classes small and focused, minimising the use of global state, and keeping the dependencies between classes as loose as possible.
 
-__What does SOLID stand for?__
+<br>
+
+### __What does SOLID stand for?__
 
 The SOLID principles include:
 Single Responsibility Principle (SRP): A class should have only one reason to change.
@@ -389,7 +395,9 @@ Interface Segregation Principle (ISP): Clients should not be forced to depend on
 
 Dependency Inversion Principle (DIP): High-level modules should not depend on low-level modules, both should depend on abstractions.
 
-__What is Dependency Inversion Principle (DIP?__
+<br>
+
+### __What is Dependency Inversion Principle (DIP?__
 
 DIP stands for the Dependency Inversion Principle. It is one of the SOLID principles in object-oriented design. The DIP states two main principles:
 
@@ -409,7 +417,9 @@ __Modularity and reusability:__ The DIP encourages the creation of well-defined 
 
 To adhere to the DIP, you can use techniques such as dependency injection, inversion of control containers, and interface-based programming. These techniques help invert the traditional flow of dependencies and ensure that high-level modules/classes depend on abstractions rather than concrete implementations.
 
-__Don’t you feel SRP and OCP are already contradicting each other?__
+<br>
+
+### __Don’t you feel SRP and OCP are already contradicting each other?__
 
 The Single Responsibility Principle (SRP) and the Open-Closed Principle (OCP) are two fundamental principles in object-oriented design, and they are not inherently contradictory. Let's understand each principle:
 
@@ -425,7 +435,7 @@ OCP encourages designing classes and systems to be extensible without modifying 
 
 <br>
 
-__What is covariance? How do you make a generic class covariant?__
+### __What is covariance? How do you make a generic class covariant?__
 
 Covariance is a concept in type theory that relates to the compatibility and substitutability of types in a type hierarchy. It defines the relationship between types when considering subtyping and the direction of type conversions.
 
@@ -488,7 +498,7 @@ This assignment is possible because `AnimalContainer<Dog>` is considered a subty
 
 Covariance is useful when you have scenarios where you want to work with a collection or container of objects of a more general type, but you also want to support using more specific derived types in the same container. It provides flexibility and polymorphism when dealing with generic types.
 
-__Can you give an example for contravariance?__
+### __Can you give an example for contravariance?__
 
 Contravariance is another concept in type theory that relates to the compatibility and substitutability of types, but in the opposite direction compared to covariance. In contravariance, a base type can be used in place of a derived type. Let's consider an example:
 
@@ -543,87 +553,87 @@ This assignment is possible because `AnimalHandler<Animal>` is considered a subt
 
 Contravariance is useful when you need to work with types that consume objects or accept method arguments of a more general type. It provides flexibility when handling objects or implementing interfaces that expect base types, allowing for greater code reuse and polymorphism.
 
-__What do you think, how can we connect the idea of “composition over inheritance” with interface segregation?__
+### __What do you think, how can we connect the idea of “composition over inheritance” with interface segregation?__
 
-__What is the connection between DIP, Inversion of Control and Dependency Injection?__
+### __What is the connection between DIP, Inversion of Control and Dependency Injection?__
 
-__What kind of DI frameworks have you been working with?__
+### __What kind of DI frameworks have you been working with?__
 
-__Have you met with GRASP before?__
+### __Have you met with GRASP before?__
 
-__What is the main difference between a class and a struct?__
+### __What is the main difference between a class and a struct?__
 
-__What is every object derived from in C#?__
+### __What is every object derived from in C#?__
 
-__What are the main methods we get with System.Object?__
+### __What are the main methods we get with System.Object?__
 
-__Why do we have to override the GetHashCode method alongside Equals?__
+### __Why do we have to override the GetHashCode method alongside Equals?__
 
-__If we know everything is derived from the System.Object, which is a Reference Type item, how can a struct be a Value Type then?__
+### __If we know everything is derived from the System.Object, which is a Reference Type item, how can a struct be a Value Type then?__
 
-__What part of the memory holds the data in C#?__
+### __What part of the memory holds the data in C#?__
 
-__What is responsible for cleaning the unused objects from the memory?__
+### __What is responsible for cleaning the unused objects from the memory?__
 
-__How does the GC work?__
+### __How does the GC work?__
 
-__How many heaps are there?__
+### __How many heaps are there?__
 
-__What are the generations?__
+### __What are the generations?__
 
-__What is the size limit of an object to be allocated on the LOH instead of the SOH? / Why 85kB? / Are there exceptions?__
+### __What is the size limit of an object to be allocated on the LOH instead of the SOH? / Why 85kB? / Are there exceptions?__
 
-__How many stack frames a software creates during its runtime?__
+### __How many stack frames a software creates during its runtime?__
 
-__How would you implement a Finalizer?__
+### __How would you implement a Finalizer?__
 
-__When is it needed?__
+### __When is it needed?__
 
-__Why is IDisposable important in this context?__
+### __Why is IDisposable important in this context?__
 
-__Why do you need to suppress the finalizer at an intentional call?__
+### __Why do you need to suppress the finalizer at an intentional call?__
 
-__What is the true-false pattern?__
+### __What is the true-false pattern?__
 
-__Which Design Patterns have you used before?__
+### __Which Design Patterns have you used before?__
 
-__It is a well known fact that the Singleton is an antipattern, why do you think it is?__
+### __It is a well known fact that the Singleton is an antipattern, why do you think it is?__
 
-__How do DI frameworks have an impact on the commonly used patterns?__
+### __How do DI frameworks have an impact on the commonly used patterns?__
 
-__What kind of life cycles are you familiar with?__
+### __What kind of life cycles are you familiar with?__
 
-__There is a task that takes a long time to run in your solution. How do you keep your software responsive?__
+### __There is a task that takes a long time to run in your solution. How do you keep your software responsive?__
 
-__What kind of asynchronous approaches are you familiar with?__
+### __What kind of asynchronous approaches are you familiar with?__
 
-__What is the difference between System.Threading, the Task Parallel library and the async/await keywords?__
+### __What is the difference between System.Threading, the Task Parallel library and the async/await keywords?__
 
-__What is the difference between Task.Run and Task.Factory.StartNew?__
+### __What is the difference between Task.Run and Task.Factory.StartNew?__
 
-__What does a compiler do with the async methods?__
+### __What does a compiler do with the async methods?__
 
-__What is the MoveNext method?__
+### __What is the MoveNext method?__
 
-__What is the Synchronisation Context? What kind of pitfalls does it introduce?__
+### __What is the Synchronisation Context? What kind of pitfalls does it introduce?__
 
-__You have been working with .NET more than (current year-2016) years.what is your experience when you had to switch between .NET Framework to .NET Core?__
+### __You have been working with .NET more than (current year-2016) years.what is your experience when you had to switch between .NET Framework to .NET Core?__
 
-__How did Microsoft achieve cross platform functionality with .NET Core?__
+### __How did Microsoft achieve cross platform functionality with .NET Core?__
 
-__What are the differences between the Assembly loading?__
+### __What are the differences between the Assembly loading?__
 
-__How does the new Assembly load workflow prevent multiple package versions including?__
+### __How does the new Assembly load workflow prevent multiple package versions including?__
 
-__From where do you load an Assembly in both versions of the framework?__
+### __From where do you load an Assembly in both versions of the framework?__
 
-__According to what we talked about then, what kind of items do you find in the runtime library?__
+### __According to what we talked about then, what kind of items do you find in the runtime library?__
 
-__I see that you have been working with ASP.NET Core. What is the difference between UseMvc and AddMvc?__
+### __I see that you have been working with ASP.NET Core. What is the difference between UseMvc and AddMvc?__
 
 <br>
 
-__What is middleware? / Please give us some examples of usage!__
+### __What is middleware? / Please give us some examples of usage!__
 
 In the context of web development or distributed systems, middleware refers to software that provides a set of common functions or services to applications. It typically handles tasks such as request/response processing, data transformation, authentication, authorization, logging, caching, and error handling.
 
@@ -643,23 +653,218 @@ Database middleware: Provides a layer of abstraction between applications and da
 
 Middleware plays a crucial role in building scalable, modular, and maintainable software systems by promoting reusability, separation of concerns, and interoperability between different components. It simplifies development, enhances system flexibility, and enables the integration of heterogeneous systems.
 
-__Can you please describe the request pipeline for ASP.NET and the MVC endpoint?__
+### __Can you please describe the request pipeline for ASP.NET and the MVC endpoint?__
 
-__In your CV it says you have been working with databases. How does an API connect to a database?__
+In ASP.NET MVC, the request pipeline refers to the sequence of steps that a web request goes through from the time it enters the application to the generation of a response. Here's an overview of the request pipeline in ASP.NET MVC:
 
-__What kind of ORMs are you familiar with?__
+__Routing:__ When a request is received, the ASP.NET routing module maps the URL to a specific route defined in the application's route table. The route determines which controller and action method should handle the request.
 
-__What is the difference between Database- and Code-First approaches?__
+__Controller Initialization:__ Once the route is determined, the controller associated with the route is instantiated by the MVC framework. The controller's constructor and any dependencies are resolved through dependency injection, if configured.
 
-__How does Entity Framework create a query out of an IQueryable interface?__
+__Action Method Execution:__ The controller then executes the appropriate action method based on the request. Action methods perform the necessary logic to process the request, such as retrieving data, modifying the model, or invoking other services.
 
-__What does it decide whether a LINQ query turns into an Expression-Tree or an Anonym delegate?__
+__Model Binding:__ The MVC framework binds the data from the request (form data, query parameters, etc.) to the parameters of the action method. Model binding automatically converts the incoming data to the appropriate types and populates the action method parameters or model objects.
 
-__What happens to a query if it has been run on an SQL database?__
+__Action Filters:__ Action filters are attributes or classes that can be applied to action methods or controllers. They provide a way to implement cross-cutting concerns such as authentication, authorization, logging, or validation. Action filters can be executed before and after the action method execution.
+
+__View Rendering:__ After the action method completes its logic, it typically returns a view result, which represents the desired view template to render. The MVC framework processes the view result, locates the appropriate view template, and generates the HTML markup.
+
+__Response Generation:__ Once the view template is rendered, the resulting HTML is combined with the layout (if specified) to generate the final response. Any additional processing, such as compression, encryption, or caching, may occur at this stage.
+
+__Response Sent:__ The generated response is sent back to the client over the network, completing the request-response cycle.
+
+```csharp
+public class HomeController : Controller
+{
+    // Step 1: Routing
+    // The HomeController is associated with the default route: "{controller}/{action}/{id}".
+    // GET: /Home/Index
+    public ActionResult Index()
+    {
+        // Step 2: Controller Initialization
+        // Instantiate any required dependencies or services.
+        var userService = new UserService();
+
+        // Step 3: Action Method Execution
+        // Perform logic for the Index action method, such as retrieving data or modifying the model.
+        var users = userService.GetUsers();
+
+        // Step 4: Model Binding
+        // The action method doesn't have any parameters, so no model binding is required in this case.
+
+        // Step 5: Action Filters
+        // Apply an action filter to perform authentication before executing the action method.
+        if (!User.Identity.IsAuthenticated)
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
+        // Step 6: View Rendering
+        // Return a view result representing the desired view template to render.
+        // Pass the model (users) to the view.
+        return View(users);
+    }
+
+    // Other action methods and their respective steps follow the same pattern.
+}
+```
+
+In this extended example, the HomeController includes a dummy UserService class to simulate a service responsible for retrieving user data. The Index action method retrieves a list of users from the UserService and passes it to the view.
+
+*__Please note__ that the dummy code provided is for illustrative purposes only and may not represent an actual implementation. The purpose is to showcase the flow of the request pipeline and demonstrate the usage of each step.*
 
 <br>
 
-__What is the difference between running a query several times or turning it into a Stored Procedure?__
+__In your CV it says you have been working with databases. How does an API connect to a database?__
+
+In .NET Core, you can connect to a database using the Entity Framework Core (EF Core), which is an Object-Relational Mapping (ORM) framework. EF Core provides a high-level abstraction over the database access, allowing you to interact with the database using object-oriented code instead of writing raw SQL queries. Here's an example of how it works:
+
+1. Install EF Core: Start by installing the EF Core package using NuGet. You can do this by adding the appropriate EF Core packages to your project.
+
+2. Define a DbContext: Create a class that derives from the DbContext class. This class represents the database context and provides access to the database tables and their corresponding entities. It also contains the database connection information and configuration. Here's an example:
+
+```csharp
+
+using Microsoft.EntityFrameworkCore;
+
+public class MyDbContext : DbContext
+{
+    public DbSet<Customer> Customers { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer("connection_string_here");
+    }
+}
+```
+
+<br>
+
+3. Define Entities: Create classes that represent the database tables and their relationships. These classes, known as entities, map to the corresponding database tables. For example:
+
+```csharp
+
+public class Customer
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+}
+
+```
+
+<br>
+
+4. Perform Database Operations: In your API code, you can now use the MyDbContext to perform various database operations, such as querying, inserting, updating, or deleting records. Here's an example of querying customers from the database:
+
+```csharp
+// Save a Customer object into the database
+public void SaveCustomer(Customer customer)
+{
+    using (var dbContext = new MyDbContext())
+    {
+        dbContext.Customers.Add(customer);
+        dbContext.SaveChanges();
+    }
+}
+
+// Retrieve a Customer by ID from the database
+public Customer GetCustomerById(int customerId)
+{
+    using (var dbContext = new MyDbContext())
+    {
+        var customer = dbContext.Customers.Find(customerId);
+        return customer;
+    }
+}
+```
+
+5. Migrations: EF Core also supports database migrations, which allow you to evolve the database schema over time. Migrations are used to create or modify database tables, columns, and relationships based on changes in your entity classes. You can use EF Core's migration commands to generate and apply migrations to the database.
+
+<br>
+
+__What kind of ORMs are you familiar with?__
+
+Entity framework, Dapper, Ado
+
+<br>
+
+__What is the difference between Database- and Code-First approaches?__
+
+The difference between the Database-First and Code-First approaches lies in how the database schema and the corresponding application code are created and managed.
+
+__Database-First Approach:__<br>
+In the Database-First approach, the database schema is designed and created first using tools such as SQL scripts or visual database design tools.
+Once the database schema is defined, the application code is generated based on the existing database structure.
+An Object-Relational Mapping (ORM) tool, like Entity Framework, can be used to generate the code models and mappings based on the database schema.
+Developers can then build the application code around the generated models to work with the database.
+
+__Code-First Approach:__<br>
+In the Code-First approach, the application code is written first, including the classes representing entities and their relationships.
+The developer defines the classes, properties, and relationships using an ORM framework, such as Entity Framework.
+Once the code models are defined, the ORM tool can automatically generate the database schema based on the code models.
+The generated database schema can be further refined and customized using migrations or specific configuration.
+
+In summary, the Database-First approach starts with an existing database schema and generates the code models, while the Code-First approach starts with writing the application code and generates the database schema based on the code models. Each approach has its advantages and may be more suitable depending on the project requirements and the team's preferred workflow.
+
+<br>
+
+### __How does Entity Framework create a query out of an IQueryable interface?__
+
+Entity Framework translates an IQueryable interface into a database query using a feature called "query translation." Here's an overview of how Entity Framework achieves this:
+
+__Expression Trees:__ When you construct an IQueryable object in your code, you are actually building an expression tree that represents the query logic. An expression tree is a data structure that represents the code as data, allowing Entity Framework to analyze and translate it.
+
+__Query Provider:__ Entity Framework includes a query provider that processes the expression tree and translates it into a database-specific query language, such as SQL.
+
+__Expression Tree Analysis:__ The query provider examines the expression tree, analyzing the various components, such as predicates, projections, ordering, and joins.
+
+__Query Translation:__ Based on the analysis, the query provider generates the corresponding SQL query that reflects the intent expressed in the IQueryable interface. It converts the expression tree into a SQL query with appropriate database-specific syntax and constructs.
+
+__Database Execution:__ Once the SQL query is generated, Entity Framework sends the query to the database for execution. The database processes the query, retrieves the requested data, and returns the result set.
+
+By using the expression tree and query provider mechanism, Entity Framework can dynamically build and execute database queries based on the LINQ expressions and operations performed on the IQueryable interface. This allows developers to write expressive LINQ queries in their code without having to manually construct SQL statements, making the database access code more readable and maintainable.
+
+<br>
+
+### __What does it decide whether a LINQ query turns into an Expression-Tree or an Anonym delegate?__
+
+When working with LINQ queries, whether it results in an expression tree or an anonymous delegate depends on the context in which the query is used and the syntax used to write the query. Here are some factors that determine whether a LINQ query is represented as an expression tree or an anonymous delegate:
+
+1. Query Syntax vs. Method Syntax:
+__Query Syntax:__ When you use the query syntax (keywords like from, where, select, etc.), the LINQ query is automatically translated into an expression tree.
+__Method Syntax:__ When you use the method syntax (extension methods like Where, Select, etc.), the query is represented as an anonymous delegate (lambda expression) unless it's explicitly converted to an expression tree using methods like .AsQueryable() or .AsExpression().
+
+2. Deferred Execution:
+Both expression trees and anonymous delegates support deferred execution, which means the query is not executed immediately but rather when the result is actually enumerated or materialized.
+The decision to represent the query as an expression tree or an anonymous delegate doesn't affect deferred execution. It's a separate concept.
+
+3. Query Composition:
+If you compose multiple LINQ queries together (chaining multiple Where, Select, etc. operations), the overall query representation will depend on the syntax used in each step. If any step uses the query syntax, the entire query will be represented as an expression tree.
+
+4. Usage in ORM Frameworks:
+When working with ORM frameworks like Entity Framework, LINQ queries are typically represented as expression trees to enable query translation to SQL.
+
+In summary, the choice between expression trees and anonymous delegates depends on the syntax used (query vs. method), the usage context, and whether explicit conversions are applied. The query syntax automatically results in expression trees, while the method syntax uses anonymous delegates unless explicitly converted.
+
+<BR>
+
+### __What happens to a query if it has been run on an SQL database?__
+
+__Parsing:__ The database system parses the SQL query to understand its structure and syntax. This involves breaking down the query into meaningful components, such as keywords, table names, column names, conditions, and operations.
+
+__Query Optimization:__ The database optimizer analyzes the query and determines the most efficient way to retrieve the requested data. It considers factors such as available indexes, statistics, and cost-based analysis to generate an optimal query execution plan.
+
+__Execution Plan Generation:__ Based on the query optimization phase, the database generates an execution plan that outlines the steps and operations required to retrieve the data. This plan specifies the order of operations, joins, filters, and any other operations necessary to produce the desired result.
+
+__Execution:__ The database executes the generated execution plan, which involves accessing the necessary data from the underlying storage system, applying filters and joins, and performing any required computations or aggregations.
+
+__Result Retrieval:__ Once the query execution is complete, the database retrieves the result set containing the requested data. The result is typically returned to the application or client that initiated the query.
+
+
+<br>
+
+### __What is the difference between running a query several times or turning it into a Stored Procedure?__
 
 Execution Efficiency: A stored procedure is precompiled and stored on the database server, which means that subsequent executions can be faster compared to running the same query multiple times. When a stored procedure is called, the database server can reuse the execution plan, resulting in improved performance.
 
@@ -671,7 +876,7 @@ In summary, turning a query into a stored procedure offers advantages such as im
 
 <br>
 
-__What is indexing?__
+### __What is indexing?__
 
 Indexing is a technique used in databases to improve the efficiency of data retrieval operations, such as searching, sorting, and filtering. An index is a data structure that allows for faster access to specific rows in a database table based on the values of one or more columns.
 
@@ -683,7 +888,7 @@ In summary, indexing is a mechanism that enables faster data retrieval in databa
 
 <br>
 
-__What is a Clustered/Nonclustered Index? What’s the difference?__
+### __What is a Clustered/Nonclustered Index? What’s the difference?__
 
 __Clustered Index:__
 A clustered index determines the physical order of data rows in a table.
@@ -704,7 +909,7 @@ In summary, a clustered index determines the physical order of data in a table, 
 
 <br>
 
-__What kind of Isolation Levels have you used in a Transaction? Can you describe them?__
+### __What kind of Isolation Levels have you used in a Transaction? Can you describe them?__
 Personal experience: I havent really needed to know all this, except for one time. We were normalizing some data and for this we needed to write a query, and we didnt really care is the data were a bit stale, we were just checking whether the query queries the necesseray type of data.
 
 Isolation levels define the degree to which one transaction must be isolated from the effects of other concurrently executing transactions. Here are the four standard isolation levels defined by the ANSI/ISO SQL standard:
