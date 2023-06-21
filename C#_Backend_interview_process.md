@@ -570,9 +570,48 @@ Contravariance is useful when you need to work with types that consume objects o
 
 ### __Why do we have to override the GetHashCode method alongside Equals?__
 
+
+When implementing the Equals method for custom types in C#, it is recommended to override the GetHashCode method as well. Here's why:
+
+__Consistency with Equals:__ The GetHashCode method is used in hash-based collections such as dictionaries and hash sets to quickly locate objects. By overriding both Equals and GetHashCode, you ensure consistency between them. According to the .NET Framework Design Guidelines, if two objects are considered equal (as determined by the Equals method), their hash codes should be equal as well.
+
+__Proper Functioning in Collections:__ Many collection types rely on the hash code to efficiently organize and retrieve objects. If you don't override GetHashCode, the default implementation provided by the Object class generates a hash code based on the object's reference, rather than its content. This can lead to incorrect behavior in collections that rely on hash codes, resulting in unexpected performance issues and incorrect retrieval of objects.
+
+__Equality Contract:__ The Equals and GetHashCode methods are closely related and should work together to maintain the equality contract. The equality contract states that if two objects are considered equal (as determined by Equals), their hash codes should be equal, and vice versa. Failing to override GetHashCode can break this contract and lead to unexpected behavior.
+
+__Correct Behavior in Collections:__ When using objects as keys in dictionaries or hash sets, proper implementation of Equals and GetHashCode ensures correct behavior. It allows for efficient retrieval and identification of objects based on their content rather than just their references.
+
+By overriding both Equals and GetHashCode methods, you ensure consistency, maintain the equality contract, and enable correct functioning of your custom types in hash-based collections. It ensures that your objects are properly stored, retrieved, and compared in scenarios where hash codes are used.
+
 ### __If we know everything is derived from the System.Object, which is a Reference Type item, how can a struct be a Value Type then?__
 
+<br>
+
 ### __What part of the memory holds the data in C#?__
+
+In C#, you can implement a finalizer using the destructor syntax. A finalizer, also known as a destructor, is a special method that is automatically called by the garbage collector when an object is being garbage collected. Here's an example of how to implement a finalizer:
+
+```csharp
+public class MyClass
+{
+    // ...
+
+    // Destructor (finalizer)
+    ~MyClass()
+    {
+        // Cleanup code goes here
+        // Release unmanaged resources, close file handles, etc.
+    }
+}
+```
+
+In the example above, the class MyClass contains a destructor defined using the ~ symbol followed by the class name. The destructor has the same name as the class and no parameters. Inside the destructor, you can include cleanup code to release any unmanaged resources that the object might have acquired, such as file handles or database connections.
+
+It's important to note that the destructor is not guaranteed to be called immediately when an object becomes eligible for garbage collection. The timing of the finalization is determined by the garbage collector itself and can vary. Therefore, you should avoid relying on the destructor for critical cleanup tasks or resource management.
+
+In modern C#, it is generally recommended to use deterministic cleanup by implementing the IDisposable pattern along with the Dispose method instead of relying on finalizers. The Dispose method allows explicit cleanup of resources when they are no longer needed, giving more control over the cleanup process.
+
+<br>
 
 ### __What is responsible for cleaning the unused objects from the memory?__
 
@@ -594,7 +633,60 @@ Contravariance is useful when you need to work with types that consume objects o
 
 ### __Why do you need to suppress the finalizer at an intentional call?__
 
+Suppressing the finalizer at an intentional call is typically done when you have already explicitly released the resources associated with an object using the Dispose method (implementing the IDisposable pattern). Here's why you may need to suppress the finalizer in such scenarios:
+
+Efficient Resource Management: When an object implements IDisposable, it allows explicit cleanup of resources through the Dispose method. This allows you to release resources as soon as they are no longer needed, rather than relying on the non-deterministic finalization process. Explicitly disposing of resources can lead to more efficient resource management and help avoid resource leaks.
+
+Suppressing Unnecessary Finalization: When you explicitly release resources through the Dispose method, you have already taken responsibility for the cleanup. In such cases, it is unnecessary and potentially wasteful to go through the finalization process, which involves invoking the finalizer and potentially delaying the object's removal from memory. By suppressing the finalizer, you indicate that the cleanup has already been performed and there is no need for additional finalization.
+
+Performance Considerations: The finalization process incurs overhead due to its non-deterministic nature and the involvement of the garbage collector. By suppressing the finalizer when you have already explicitly released resources, you can potentially improve the performance of your application by reducing unnecessary work performed during garbage collection cycles.
+
+To suppress the finalizer at an intentional call, you can use the GC.SuppressFinalize method, passing the instance of the object for which the finalization should be suppressed. For example:
+
+```csharp
+public class MyClass : IDisposable
+{
+    // ...
+
+    public void Dispose()
+    {
+        // Cleanup code goes here
+        // Release resources
+
+        GC.SuppressFinalize(this); // Suppress the finalizer
+    }
+
+    // Destructor (finalizer)
+    ~MyClass()
+    {
+        // Cleanup code goes here
+        // Release unmanaged resources, if not already disposed
+    }
+}
+```
+By calling GC.SuppressFinalize(this) within the Dispose method, you indicate that the finalizer for the current object should not be invoked. This helps prevent unnecessary finalization and contributes to efficient resource management and performance.
+
+<br>
+
 ### __What is the true-false pattern?__
+
+The true-false pattern, also known as the "try-parse" pattern, is a coding pattern commonly used to parse and convert input values into their corresponding data types, such as integers, booleans, or dates. The pattern typically involves using a method that returns a boolean value indicating whether the parsing was successful, along with an out parameter to store the parsed result.
+
+Here's an example of the true-false pattern for parsing an integer:
+
+```csharp
+Copy code
+public static bool TryParseInt(string input, out int result)
+{
+    return int.TryParse(input, out result);
+}
+```
+
+In the example above, the `TryParseInt` method takes a string input that represents the integer value to be parsed. It also has an out parameter result, which will store the parsed integer value if the parsing is successful.
+
+The `int.TryParse` method is a built-in .NET method that attempts to parse a string representation of an integer. It returns true if the parsing succeeds and assigns the parsed value to the result parameter. If the parsing fails, it returns false and sets the result parameter to the default value of the target data type (in this case, 0 for int).
+
+The true-false pattern allows you to parse values without throwing exceptions in case of parsing errors. Instead, it provides a way to handle and respond to invalid input gracefully by checking the boolean result of the parsing method. This pattern is commonly used when you want to avoid exceptions and prefer a more controlled approach to handling parsing errors.
 
 ### __Which Design Patterns have you used before?__
 
@@ -604,6 +696,39 @@ Contravariance is useful when you need to work with types that consume objects o
 
 ### __What kind of life cycles are you familiar with?__
 
+### What is a Task?
+In C#, a Task is a representation of an asynchronous operation or a unit of work that can be scheduled and executed concurrently. It belongs to the Task Parallel Library (TPL) and is part of the broader asynchronous programming model in .NET.
+
+Here are some key points about tasks:
+
+__Asynchronous Execution:__ Tasks enable you to perform operations asynchronously without blocking the main thread. They provide a way to offload work to background threads or utilize thread pool threads to execute code concurrently.
+
+__Abstraction of Work:__ Tasks encapsulate work to be done, typically represented by a delegate or lambda expression. The work can include CPU-bound computations, I/O operations, or any other operation that can benefit from asynchronous execution.
+
+__Composition and Continuation:__ Tasks can be composed and chained together using continuation methods like ContinueWith, ContinueWithAsync, or using the await keyword. This allows you to express complex asynchronous workflows and dependencies between tasks.
+
+__Result and Progress Reporting:__ Tasks can have a result of a specified type, allowing you to retrieve the outcome or value produced by the task once it completes. Additionally, you can report progress updates from within a task using the IProgress<T> interface.
+
+__Exception Handling:__ Tasks provide built-in mechanisms for handling exceptions that occur during task execution. You can use the await keyword or the Task.Exception property to handle exceptions gracefully.
+
+__Task Scheduling:__ Tasks can be scheduled for execution on different task schedulers, such as the thread pool, a custom scheduler, or the UI thread (in UI applications). The scheduler determines how and where the task will be executed.
+
+Tasks play a crucial role in modern C# and are widely used for writing asynchronous and concurrent code. They offer a high-level abstraction for managing asynchronous operations, simplifying the handling of concurrency, and promoting efficient resource utilization.
+
+### What are the differences between a Task and a thread?
+
+In C#, a Task and a thread are both used for concurrent execution, but they represent different concepts and have distinct characteristics:
+
+__Abstraction:__ A Task is a higher-level abstraction that represents a unit of work or an asynchronous operation. It provides a way to express and manage concurrency without explicitly dealing with threads. On the other hand, a thread is a lower-level construct that represents an individual thread of execution within an application.
+
+__Resource Usage:__ Threads are OS-level resources that require memory and other system resources to function. Creating and managing threads directly can have overhead and limit scalability. In contrast, Task instances are lightweight objects that can be scheduled and executed on one or more threads from a thread pool. Tasks utilize thread pooling and task scheduling mechanisms provided by the underlying framework, reducing the overhead associated with creating and managing threads manually.
+
+__Flexibility:__ Threads offer lower-level control over execution, allowing you to set thread-specific properties, adjust thread priorities, and synchronize threads using low-level synchronization primitives like locks and semaphores. Task objects, on the other hand, provide higher-level abstractions for managing concurrency, including composition, continuation, cancellation, and exception handling.
+
+__Asynchrony:__ Tasks are designed to support asynchronous programming models, allowing you to write code that can efficiently handle I/O-bound operations or long-running computations without blocking the main thread. Tasks provide features like await and async to simplify asynchronous programming. Threads, on the other hand, are typically used for synchronous execution and are not designed explicitly for asynchronous operations.
+
+In summary, while both Task and threads enable concurrent execution, Task provides a higher-level abstraction for managing asynchronous operations and leveraging thread pooling, while threads offer lower-level control over execution but require more manual management and resource allocation. The use of Task is generally preferred for most asynchronous and concurrent programming scenarios in C#.
+
 ### __There is a task that takes a long time to run in your solution. How do you keep your software responsive?__
 
 ### __What kind of asynchronous approaches are you familiar with?__
@@ -612,7 +737,33 @@ Contravariance is useful when you need to work with types that consume objects o
 
 ### __What is the difference between Task.Run and Task.Factory.StartNew?__
 
+In C#, both `Task.Run` and `Task.Factory.StartNew` are used to create and execute tasks asynchronously. However, there are some differences between them:
+
+__Simplicity:__ `Task.Run` is a simpler and more intuitive way to start a task. It is a static method introduced in .NET 4.5 that takes a delegate or lambda expression representing the task's code and returns a Task object. It uses default settings and is optimized for common usage scenarios.
+
+__Flexibility:__ `Task.Factory.StartNew` is a more versatile method that provides more options for configuring and customizing the task. It is available since .NET 4.0 and allows you to specify additional parameters like `TaskCreationOptions` and `TaskScheduler`. It provides greater control over task creation and scheduling, but it also requires more explicit configuration.
+
+__Default TaskScheduler:__ `Task.Run` uses the `TaskScheduler.Default` by default, which schedules the task to the thread pool. It is suitable for most general-purpose scenarios, as it provides good performance and automatically manages the task's execution. On the other hand, `Task.Factory.StartNew` allows you to specify a specific TaskScheduler explicitly.
+
+__TaskCreationOptions:__ `Task.Run` internally uses the TaskCreationOptions enumeration with the `TaskCreationOptions.DenyChildAttach` flag. This flag indicates that child tasks cannot be attached to the task created by `Task.Run`. In contrast, `Task.Factory.StartNew` allows more granular control over the creation options.
+
+In general, for most common scenarios, `Task.Run` is recommended due to its simplicity and optimized defaults. It provides a convenient way to start a task asynchronously without the need for additional configuration. However, if you require more advanced options or want fine-grained control over task creation and scheduling, `Task.Factory.StartNew` gives you the flexibility to customize the task's behavior.
+
 ### __What does a compiler do with the async methods?__
+
+When the C# compiler encounters an async method, it performs several transformations to generate the corresponding state machine and code to handle asynchronous behavior. Here's a high-level overview of what the compiler does with async methods:
+
+__State Machine Generation:__ The compiler creates a state machine that represents the asynchronous workflow of the async method. This state machine keeps track of the current execution state and allows the method to suspend and resume execution as needed.
+
+__Method Transformation:__ The compiler transforms the async method into a state machine-based structure. It rewrites the method body into a series of state transitions and awaits that allow the method to yield control to the caller when encountering an awaitable operation.
+
+__Task-Based Asynchrony:__ The compiler wraps the result of the async method in a `Task` or `Task<T>`. This allows the caller to await the completion of the async method and receive the eventual result or handle any exceptions that occur during execution.
+
+__Continuation Handling:__ The compiler generates code to handle the continuation of the async method after awaiting an operation. It registers a continuation with the awaited operation, specifying the code that needs to run when the operation completes. This enables the async method to resume execution at the correct point after the awaited operation finishes.
+
+__Exception Handling:__ The compiler generates code to properly handle exceptions within the async method. It ensures that exceptions thrown within the method or during awaiting are correctly propagated to the caller or captured and wrapped in the resulting `Task`.
+
+Overall, the compiler's handling of async methods allows you to write asynchronous code in a more readable and structured manner, while abstracting away the complexities of manual thread management and synchronization. It enables you to leverage the await and async keywords to write code that appears sequential and straightforward, even though it executes asynchronously.
 
 ### __What is the MoveNext method?__
 
@@ -945,3 +1096,13 @@ Even when `transaction A` commits, `transaction B` still reads data based on the
 
 Over to you: have you seen isolation levels used in the wrong way?
 Did it cause serious outages?
+
+### What are the differences between event sourcing and event streaming?
+
+__Event Sourcing:__
+Event Sourcing is an architectural pattern that involves capturing and storing every change or event that occurs in an application's state over time. Instead of storing just the current state, the entire history of state changes is recorded as a sequence of events. These events are stored in an append-only event log or event store, which becomes the source of truth for reconstructing the application state at any point in time. Event Sourcing provides a historical view of how the application arrived at its current state and enables features like auditability, temporal querying, and reliable data reconstruction.
+
+__Event Streaming:__
+Event Streaming, on the other hand, refers to a data streaming approach where events are continuously produced, published, and consumed in real-time. It involves the processing and propagation of events as they occur, allowing various systems or components to react and respond to those events immediately. Event Streaming is commonly used in event-driven architectures and enables building real-time, scalable, and responsive systems. Technologies like Apache Kafka and Azure Event Hubs are often used to implement event streaming.
+
+In summary, the main difference between Event Sourcing and Event Streaming lies in their focus and purpose. Event Sourcing is concerned with capturing and storing the history of state changes for reconstructing the application's state, while Event Streaming is focused on the continuous flow and processing of events in real-time for enabling real-time reactions and system integration.

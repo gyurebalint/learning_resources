@@ -19,8 +19,7 @@
     - [Processes & Multithreading](#procceses---multithreads)
 
 # About
-
-Hopefully, it helps you understand and visualise software engineer concepts, helps you prepare for interviews and locate great resources.
+Hopefully, it helps you understand and visualise software engineer concepts, helps you prepare for interviews and locate great resources. Fill those gaps in your knowledge.
 
 This doc should be an extension to the 
 [Sytem design primer](https://github.com/donnemartin/system-design-primer#study-guide) - start here
